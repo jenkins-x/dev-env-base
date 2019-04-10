@@ -28,7 +28,7 @@ Use the following command to build the docker image:
 make build
 ```
 ### jx
-Remote builds of this project are triggered via Pull Requests of Merges into master.
+Remote builds of this project are triggered via Pull Requests or Merges into master.
 
 ## run
 To use the dev-env-base as a complete and stateful environment please see the [dev-env](https://github.com/jenkins-x/dev-env), or alternatively use the following as an example:
