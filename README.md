@@ -2,7 +2,7 @@
 _A development environment base image for docker._
 
 ## overview
-The intention of this project is to provide an image with theecessary tools and packages required for a golang development environment which is convenient and accessible. The dev-env-base image is built upon an [alpine golang image](https://hub.docker.com/_/golang), we extend this base image and include the following tools/packages:
+The intention of this project is to provide an image with the necessary tools and packages required for a golang development environment which is convenient and accessible. The dev-env-base image is built upon an [alpine golang image](https://hub.docker.com/_/golang), we extend this base image and include the following tools/packages:
 - [golang](https://golang.org/)
 - [groovy](http://groovy-lang.org/)
 - [git](https://git-scm.com/)
