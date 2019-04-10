@@ -28,7 +28,16 @@ pipelineConfig:
             command: /kaniko/executor
             args:
               - --dockerfile=Dockerfile.go-alpine
-              - --destination=gcr.io/jenkinsxio/dev-env-base:${inputs.params.version}
+              - --destination=gcr.io/jenkinsxio/dev-env-base:${inputs.params.version}-go-alpine
+              - --context=/workspace/source
+              - --cache-repo=gcr.io/jenkinsxio/cache
+              - --cache=true
+              - --cache-dir=/workspace
+          - image: gcr.io/kaniko-project/executor:9912ccbf8d22bbafbf971124600fbb0b13b9cbd6
+            command: /kaniko/executor
+            args:
+              - --dockerfile=Dockerfile.go-stretch
+              - --destination=gcr.io/jenkinsxio/dev-env-base:${inputs.params.version}-go-stretch
               - --context=/workspace/source
               - --cache-repo=gcr.io/jenkinsxio/cache
               - --cache=true

@@ -27,7 +27,10 @@ function setup_hub(){
 function setup_bash_completion(){
   source /usr/share/bash-completion/bash_completion
   source <(kubectl completion bash)
-  source '/usr/local/google-cloud-sdk/path.bash.inc'
+  if [[ -d /usr/local/google-cloud-sdk/path.bash.inc ]]
+  then
+    source '/usr/local/google-cloud-sdk/path.bash.inc'
+  fi
   source '/usr/local/google-cloud-sdk/completion.bash.inc'
 }
 
@@ -48,7 +51,7 @@ function setup_environment(){
   export HISTFILESIZE=2000
   export CHARSET=UTF-8
   export PAGER=less
-  export PS1='$(echo -e "'"\U1F645"'") \[\033[32m\]\u \[\033[33m\]\w($(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1/p"))\[\033[00m\]$ '
+  export PS1='$(echo -e $"'"\xF0\x9F\x99\x85"'") \[\033[32m\]\u \[\033[33m\]\w($(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1/p"))\[\033[00m\]$ '
   export JAVA_HOME=$(dirname $(readlink -f $(which java)) | sed 's:/bin::')
   export PATH=$PATH:$JAVA_HOME/bin
   export TERM=xterm-256color
