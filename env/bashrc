@@ -1,0 +1,64 @@
+#!/bin/bash
+
+function print_motd(){
+  cat /etc/motd
+}
+
+function load_ssh_key(){
+  if [ -z "$SSH_AUTH_SOCK" ] ; then
+    eval `ssh-agent -s` >/dev/null
+    ssh-add >/dev/null 2>/dev/null
+  fi
+}
+
+function setup_aliases(){
+  alias l='ls -l'
+  alias ll='ls -la'
+  alias tmux='tmux -u'
+  alias t='tmux -u'
+  alias kc='kubectl'
+  alias wkc='tmux split-window -h "kubectl get pods -w"; tmux split-window -v "kubectl get prowjobs -w"; tmux split-window -v "kubectl get pipelinerun -w"; jx logs -k'
+}
+
+function setup_hub(){
+  eval "$(hub alias -s bash)"
+}
+
+function setup_bash_completion(){
+  source /usr/share/bash-completion/bash_completion
+  source <(kubectl completion bash)
+  source '/usr/local/google-cloud-sdk/path.bash.inc'
+  source '/usr/local/google-cloud-sdk/completion.bash.inc'
+}
+
+function execute_profile_if_exists(){
+  if [ -f ~/.bash_profile ]
+  then
+    source ~/.bash_profile
+  fi
+}
+
+function setup_environment(){
+
+  # append to the history file, don't overwrite it
+  shopt -s histappend
+  shopt -s checkwinsize
+
+  export HISTSIZE=1000
+  export HISTFILESIZE=2000
+  export CHARSET=UTF-8
+  export PAGER=less
+  export PS1='$(echo -e "'"\U1F645"'") \[\033[32m\]\u \[\033[33m\]\w($(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1/p"))\[\033[00m\]$ '
+  export JAVA_HOME=$(dirname $(readlink -f $(which java)) | sed 's:/bin::')
+  export PATH=$PATH:$JAVA_HOME/bin
+  export TERM=xterm-256color
+  execute_profile_if_exists
+  set -o vi
+}
+
+print_motd
+setup_aliases
+load_ssh_key
+setup_hub
+setup_bash_completion
+setup_environment
