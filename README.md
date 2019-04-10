@@ -32,10 +32,20 @@ Remote builds of this project are triggered via Pull Requests or Merges into mas
 
 ## run
 To use the dev-env-base as a complete and stateful environment please see the [dev-env](https://github.com/jenkins-x/dev-env), or alternatively use the following as an example:
+
+### alpine
 ```
 docker run --name dev-env-base \
            --rm \
            --tty \
            --interactive \
-           gcr.io/jenkinsxio/dev-env-base:0.0.1
+           gcr.io/jenkinsxio/dev-env-base:0.0.1-go-alpine
+```
+### stretch
+```
+docker run --name dev-env-base \
+           --rm \
+           --tty \
+           --interactive \
+           gcr.io/jenkinsxio/dev-env-base:0.0.1-go-stretch
 ```
