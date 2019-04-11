@@ -19,8 +19,6 @@ ENV DEP_VERSION 0.5.1
 ENV GOPATH ${home}/go-workspace
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 ENV GROOVY_HOME /opt/groovy
-ADD ./env/vim/colors/molokai_dark.vim /tmp/colors/molokai_dark.vim
-ADD ./env/vim/syntax/groovy.vim /tmp/syntax/groovy.vim
 WORKDIR /
 
 # Install standard dependencies
@@ -120,8 +118,6 @@ RUN curl -sL https://pre-commit.com/install-local.py | python - \
     && rm /usr/bin/vi && ln -s /usr/bin/vim /usr/bin/vi \
     && git clone https://github.com/fatih/vim-go.git /home/${user}/.vim/pack/plugins/start/vim-go \
     && git clone https://github.com/manniwood/vim-buf.git /home/${user}/.vim/pack/plugins/start/vim-buf \
-    && mv /tmp/colors /home/${user}/.vim \
-    && mv /tmp/syntax /home/${user}/.vim \
     && go get github.com/alecthomas/gometalinter  \
     && go get github.com/davidrjenni/reftools/cmd/fillstruct \
     && go get github.com/davidrjenni/reftools/cmd/fillswitch \
