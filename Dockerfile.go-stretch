@@ -43,6 +43,7 @@ RUN apt update \
        jq \
        less \
        libc-dev \
+       locales-all \
        make \
        man \
        multitail \
