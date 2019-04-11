@@ -17,6 +17,7 @@ function setup_aliases(){
   alias tmux='tmux -u'
   alias t='tmux -u'
   alias kc='kubectl'
+  complete -o default -F __start_kubectl kc
   alias wkc='tmux split-window -h "kubectl get pods -w"; tmux split-window -v "kubectl get prowjobs -w"; tmux split-window -v "kubectl get pipelinerun -w"; jx logs -k'
 }
 
@@ -60,8 +61,8 @@ function setup_environment(){
 }
 
 print_motd
+setup_bash_completion
 setup_aliases
 load_ssh_key
 setup_hub
-setup_bash_completion
 setup_environment
