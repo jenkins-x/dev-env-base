@@ -23,6 +23,7 @@ function setup_aliases(){
 
 function setup_hub(){
   eval "$(hub alias -s bash)"
+  source /etc/hub/.hub.bash_completion.sh
 }
 
 function setup_bash_completion(){
