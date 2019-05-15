@@ -1,13 +1,13 @@
-ARG JX_VERSION=2.0.63
-ARG KUBCTL_VERSION=v1.14.0
+ARG JX_VERSION=2.0.119
+ARG KUBCTL_VERSION=v1.14.1
 ARG HELM_VERSION=v2.13.1
-ARG GCLOUD_VERSION=241.0.0-slim
+ARG GCLOUD_VERSION=244.0.0-alpine
 
 FROM jenkinsxio/jx:$JX_VERSION as jx
 FROM lachlanevenson/k8s-kubectl:$KUBCTL_VERSION as kubectl
 FROM lachlanevenson/k8s-helm:$HELM_VERSION as helm
 FROM google/cloud-sdk:$GCLOUD_VERSION as gcloud
-FROM groovy:2.5.6-jdk8 as groovy
+FROM groovy:2.5.6-jdk8-alpine as groovy
 FROM golang:1.11.4-stretch
 
 ARG user=developer
@@ -15,7 +15,7 @@ ARG group=developer
 ARG home=/home/${user}
 ARG uid=1000
 ARG gid=1000
-ENV HUB_VERSION 2.11.1
+ENV HUB_VERSION 2.11.2
 ENV DEP_VERSION 0.5.1
 ENV GOPATH ${home}/go-workspace
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
@@ -71,7 +71,7 @@ RUN apt update \
 COPY --from=jx /usr/bin/jx /usr/local/bin/jx
 COPY --from=kubectl /usr/local/bin/kubectl /usr/local/bin/kubectl
 COPY --from=helm /usr/local/bin/helm /usr/local/bin/helm
-COPY --from=gcloud /usr/lib/google-cloud-sdk /usr/local/google-cloud-sdk
+COPY --from=gcloud /google-cloud-sdk /usr/local/google-cloud-sdk
 COPY --from=groovy /opt/groovy /opt/groovy
 
 # gcloud configurations

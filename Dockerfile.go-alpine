@@ -1,7 +1,7 @@
-ARG JX_VERSION=2.0.63
-ARG KUBCTL_VERSION=v1.14.0
+ARG JX_VERSION=2.0.119
+ARG KUBCTL_VERSION=v1.14.1
 ARG HELM_VERSION=v2.13.1
-ARG GCLOUD_VERSION=241.0.0-alpine
+ARG GCLOUD_VERSION=244.0.0-alpine
 
 FROM jenkinsxio/jx:$JX_VERSION as jx
 FROM lachlanevenson/k8s-kubectl:$KUBCTL_VERSION as kubectl
@@ -14,7 +14,7 @@ ARG user=developer
 ARG group=wheel
 ARG home=/home/${user}
 ARG uid=1000
-ENV HUB_VERSION 2.11.1
+ENV HUB_VERSION 2.11.2
 ENV DEP_VERSION 0.5.1
 ENV GOPATH ${home}/go-workspace
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
