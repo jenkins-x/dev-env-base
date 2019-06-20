@@ -150,6 +150,8 @@ ADD env/tmux.conf.local /home/${user}/.tmux.conf.local
 
 # Setup Environment
 USER ${user}
+EXPOSE 1313
+EXPOSE 8080
 ENV PATH /home/${user}/bin:$PATH
 WORKDIR /home/$user/go-workspace
 CMD /bin/bash
