@@ -107,6 +107,7 @@ RUN curl -sL https://pre-commit.com/install-local.py | python - \
     && go get github.com/google/ko/cmd/ko \
     && go get github.com/go-delve/delve/cmd/dlv \
     && go get github.com/gohugoio/hugo \
+    && go get gotest.tools/gotestsum \
     && $GOPATH/bin/gocode set propose-builtins true \
     # Install dep
     && curl -sL https://raw.githubusercontent.com/golang/dep/v${DEP_VERSION}/install.sh | sh \
