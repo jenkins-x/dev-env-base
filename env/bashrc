@@ -19,6 +19,7 @@ function setup_aliases(){
   alias kc='kubectl'
   complete -o default -F __start_kubectl kc
   alias wkc='tmux split-window -h "kubectl get pods -w"; tmux split-window -v "kubectl get prowjobs -w"; tmux split-window -v "kubectl get pipelinerun -w"; jx logs -k'
+  alias ccrd='for crd in $(kc get crds | grep -v NAME | awk '"'"'{print $1}'"'"'); do count=$(kc get $crd 2>/dev/null | grep -v NAME | wc -l); echo "$count : $crd"; done | sort -rn | awk '"'"'{if ($1 > 500){print}}'"'"''
 }
 
 function setup_hub(){
