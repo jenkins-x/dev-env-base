@@ -89,3 +89,7 @@ pipelineConfig:
               - --cache-repo=gcr.io/jenkinsxio/cache
               - --cache=true
               - --cache-dir=/workspace
+          - name: update-bot
+            command: ./scripts/update-bot.sh
+            args:
+              - ${inputs.params.version}
