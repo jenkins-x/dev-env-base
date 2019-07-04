@@ -42,10 +42,16 @@ docker run --name dev-env-base \
            gcr.io/jenkinsxio/dev-env-base:0.0.1-go-alpine
 ```
 ### stretch
+_see deprecation notice..._
+
+## status
+
+***NOTICE: The stretch image is now deprecated, if you wish to use the stretch image of the dev-env-base please use gcr.io/jenkinsxio/dev-env-base:0.0.52-go-stretch***
+
 ```
 docker run --name dev-env-base \
            --rm \
            --tty \
            --interactive \
-           gcr.io/jenkinsxio/dev-env-base:0.0.1-go-stretch
+           gcr.io/jenkinsxio/dev-env-base:0.0.52-go-stretch
 ```
