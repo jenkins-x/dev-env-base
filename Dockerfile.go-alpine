@@ -1,7 +1,7 @@
 ARG JX_VERSION=2.0.405
 ARG KUBCTL_VERSION=v1.14.1
 ARG HELM_VERSION=v2.13.1
-ARG GCLOUD_VERSION=244.0.0-alpine
+ARG GCLOUD_VERSION=252.0.0-alpine
 
 FROM jenkinsxio/jx:$JX_VERSION as jx
 FROM lachlanevenson/k8s-kubectl:$KUBCTL_VERSION as kubectl
