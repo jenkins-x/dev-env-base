@@ -90,6 +90,7 @@ pipelineConfig:
               - --cache=true
               - --cache-dir=/workspace
           - name: update-bot
+            image: gcr.io/jenkinsxio/builder-jx:0.1.549
             command: ./scripts/update-bot.sh
             args:
               - ${inputs.params.version}
