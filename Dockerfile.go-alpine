@@ -53,6 +53,7 @@ RUN apk --no-cache --update add \
        openssl \
        py-crcmod \
        python \
+       py-pip \
        shadow \
        sudo \
        tar \
