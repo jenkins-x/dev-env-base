@@ -91,10 +91,8 @@ RUN ln -s /lib /lib64 \
     && ln -s "${GROOVY_HOME}/bin/groovysh" /usr/bin/groovysh \
     && ln -s "${GROOVY_HOME}/bin/java2groovy" /usr/bin/java2groovy
 
-# Install pre-commit (https://pre-commit.com/)
-RUN curl -sL https://pre-commit.com/install-local.py | python - \
     # Set Root to bash not ash and overwrite .bashrc
-    && sed -i 's/root:\/bin\/ash/root:\/bin\/bash/' /etc/passwd \
+RUN sed -i 's/root:\/bin\/ash/root:\/bin\/bash/' /etc/passwd \
     # Add developer user
     && mkdir -p ${home} \
     && adduser -h ${home} -u ${uid} -G ${group} -s /bin/bash -D ${user} \
@@ -155,6 +153,8 @@ ADD env/tmux.conf.local /home/${user}/.tmux.conf.local
 
 # Setup Environment
 USER ${user}
+# Install pre-commit (https://pre-commit.com/)
+RUN curl -sL https://pre-commit.com/install-local.py | python - \
 EXPOSE 1313
 EXPOSE 8080
 ENV PATH /home/${user}/bin:$PATH
