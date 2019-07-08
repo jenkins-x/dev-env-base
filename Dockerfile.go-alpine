@@ -30,7 +30,6 @@ RUN apk --no-cache --update add \
        curl \
        docker \
        dos2unix \
-       gcc \
        git \
        git-email \
        git-perl \
@@ -52,7 +51,9 @@ RUN apk --no-cache --update add \
        openssh-client \
        openssl \
        py-crcmod \
+       py-setuptools \
        python \
+       python-dev \
        py-pip \
        shadow \
        sudo \
@@ -65,6 +66,9 @@ RUN apk --no-cache --update add \
        util-linux \
        vim \
        wget \
+    && apk add --no-cache --virtual .build-deps \
+       gcc \
+       musl-dev \
     # Setup dirs for groovy
     && mkdir -p /opt /etc/hub \
     # Install hub-cli
@@ -92,8 +96,10 @@ RUN ln -s /lib /lib64 \
     && ln -s "${GROOVY_HOME}/bin/groovysh" /usr/bin/groovysh \
     && ln -s "${GROOVY_HOME}/bin/java2groovy" /usr/bin/java2groovy
 
+# Install pre-commit (https://pre-commit.com/) & detect-secrets (https://github.com/Yelp/detect-secrets)
+RUN pip install pre-commit detect-secrets \
     # Set Root to bash not ash and overwrite .bashrc
-RUN sed -i 's/root:\/bin\/ash/root:\/bin\/bash/' /etc/passwd \
+    && sed -i 's/root:\/bin\/ash/root:\/bin\/bash/' /etc/passwd \
     # Add developer user
     && mkdir -p ${home} \
     && adduser -h ${home} -u ${uid} -G ${group} -s /bin/bash -D ${user} \
@@ -151,11 +157,8 @@ ADD env/bashrc /home/${user}/.bashrc
 ADD env/tmux.conf /home/${user}/.tmux.conf
 ADD env/tmux.conf.local /home/${user}/.tmux.conf.local
 
-
 # Setup Environment
 USER ${user}
-# Install pre-commit (https://pre-commit.com/)
-RUN curl -sL https://pre-commit.com/install-local.py | python - \
 EXPOSE 1313
 EXPOSE 8080
 ENV PATH /home/${user}/bin:$PATH
