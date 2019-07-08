@@ -78,5 +78,5 @@ pipelineConfig:
               - ${inputs.params.version}
           # Create the release notes
           - name: changelog
-            image: gcr.io/jenkinsxio/jenkins-go:0.1.549
-            command: ./jx/scripts/changelog.sh
+            image: gcr.io/jenkinsxio/builder-go:0.1.549
+            command: ./scripts/changelog.sh
