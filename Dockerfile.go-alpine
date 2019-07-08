@@ -126,6 +126,7 @@ RUN pip install pre-commit detect-secrets \
     && rm /usr/bin/vi && ln -s /usr/bin/vim /usr/bin/vi \
     && git clone https://github.com/fatih/vim-go.git /home/${user}/.vim/pack/plugins/start/vim-go \
     && git clone https://github.com/manniwood/vim-buf.git /home/${user}/.vim/pack/plugins/start/vim-buf \
+    && git clone https://github.com/hashivim/vim-terraform.git /home/${user}/.vim/pack/plugins/start/vim-terraform \
     && go get github.com/alecthomas/gometalinter  \
     && go get github.com/davidrjenni/reftools/cmd/fillstruct \
     && go get github.com/davidrjenni/reftools/cmd/fillswitch \
