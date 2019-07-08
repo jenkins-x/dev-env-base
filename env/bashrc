@@ -28,6 +28,7 @@ function setup_hub(){
 }
 
 function setup_bash_completion(){
+  source <(jx completion bash)
   source /usr/share/bash-completion/bash_completion
   source <(kubectl completion bash)
   if [[ -d /usr/local/google-cloud-sdk/path.bash.inc ]]
