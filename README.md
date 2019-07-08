@@ -11,6 +11,7 @@ The intention of this project is to provide an image with the necessary tools an
   - [golang plugin](https://github.com/fatih/vim-go)
   - [buffer switcher](https://github.com/manniwood/vim-buf)
   - [groovy syntax highlighting](https://github.com/vim-scripts/groovy.vim)
+  - [terraform plugin](https://github.com/hashivim/vim-terraform)
 - [gcloud](https://cloud.google.com/sdk/gcloud/)
 - [helm](https://helm.sh/)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
