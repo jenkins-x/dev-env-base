@@ -138,8 +138,10 @@ ADD env/tmux.conf /home/${user}/.tmux.conf
 ADD env/tmux.conf.local /home/${user}/.tmux.conf.local
 
 FROM google/cloud-sdk:$GCLOUD_VERSION AS gcloud
+FROM groovy:2.5.7-jdk8-alpine as groovy
 FROM base
 COPY --from=gcloud /google-cloud-sdk /usr/local/google-cloud-sdk
+COPY --from=groovy /opt/groovy /opt/groovy
 
 # gcloud configurations
 ENV PATH "/usr/local/google-cloud-sdk/bin:$PATH"
@@ -158,10 +160,8 @@ RUN gcloud config set core/disable_usage_reporting true \
 
 FROM lachlanevenson/k8s-kubectl:$KUBCTL_VERSION AS kubectl
 FROM lachlanevenson/k8s-helm:$HELM_VERSION AS helm
-FROM groovy:2.5.7-jdk8-alpine as groovy
 FROM jenkinsxio/jx:$JX_VERSION AS jx
 FROM base
-COPY --from=groovy /opt/groovy /opt/groovy
 COPY --from=kubectl /usr/local/bin/kubectl /usr/local/bin/kubectl
 COPY --from=helm /usr/local/bin/helm /usr/local/bin/helm
 COPY --from=jx /usr/bin/jx /usr/local/bin/jx
