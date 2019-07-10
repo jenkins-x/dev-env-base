@@ -87,6 +87,7 @@ RUN ln -s /lib /lib64 \
     && gcloud config set core/disable_usage_reporting true \
     && gcloud config set component_manager/disable_update_check true \
     && gcloud config set metrics/environment github_docker_image \
+    && gcloud components install alpha beta \
     # groovy configurations
     && ln -s "${GROOVY_HOME}/bin/grape" /usr/bin/grape \
     && ln -s "${GROOVY_HOME}/bin/groovy" /usr/bin/groovy \
