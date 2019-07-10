@@ -3,12 +3,7 @@ ARG KUBCTL_VERSION=v1.15.0
 ARG HELM_VERSION=v2.14.1
 ARG GCLOUD_VERSION=252.0.0-alpine
 
-FROM jenkinsxio/jx:$JX_VERSION as jx
-FROM lachlanevenson/k8s-kubectl:$KUBCTL_VERSION as kubectl
-FROM lachlanevenson/k8s-helm:$HELM_VERSION as helm
-FROM google/cloud-sdk:$GCLOUD_VERSION as gcloud
-FROM groovy:2.5.7-jdk8-alpine as groovy
-FROM golang:1.12.7-alpine3.10
+FROM golang:1.12.7-alpine3.10 AS base
 
 ARG user=developer
 ARG group=wheel
@@ -77,30 +72,11 @@ RUN apk --no-cache --update add \
 
 RUN pip install yamale
 
-COPY --from=jx /usr/bin/jx /usr/local/bin/jx
-COPY --from=kubectl /usr/local/bin/kubectl /usr/local/bin/kubectl
-COPY --from=helm /usr/local/bin/helm /usr/local/bin/helm
-COPY --from=gcloud /google-cloud-sdk /usr/local/google-cloud-sdk
-COPY --from=groovy /opt/groovy /opt/groovy
-
 # gcloud configurations
 ENV PATH /usr/local/google-cloud-sdk/bin:$PATH
 RUN ln -s /lib /lib64 \
-    && gcloud config set core/disable_usage_reporting true \
-    && gcloud config set component_manager/disable_update_check true \
-    && gcloud config set metrics/environment github_docker_image \
-    && gcloud components install alpha beta \
-    # groovy configurations
-    && ln -s "${GROOVY_HOME}/bin/grape" /usr/bin/grape \
-    && ln -s "${GROOVY_HOME}/bin/groovy" /usr/bin/groovy \
-    && ln -s "${GROOVY_HOME}/bin/groovyc" /usr/bin/groovyc \
-    && ln -s "${GROOVY_HOME}/bin/groovyConsole" /usr/bin/groovyConsole \
-    && ln -s "${GROOVY_HOME}/bin/groovydoc" /usr/bin/groovydoc \
-    && ln -s "${GROOVY_HOME}/bin/groovysh" /usr/bin/groovysh \
-    && ln -s "${GROOVY_HOME}/bin/java2groovy" /usr/bin/java2groovy
-
-# Install pre-commit (https://pre-commit.com/) & detect-secrets (https://github.com/Yelp/detect-secrets)
-RUN pip install pre-commit detect-secrets \
+    # Install pre-commit (https://pre-commit.com/) & detect-secrets (https://github.com/Yelp/detect-secrets)
+    && pip install pre-commit detect-secrets \
     # Set Root to bash not ash and overwrite .bashrc
     && sed -i 's/root:\/bin\/ash/root:\/bin\/bash/' /etc/passwd \
     # Add developer user
@@ -160,6 +136,35 @@ ADD env/vimrc /home/${user}/.vimrc
 ADD env/bashrc /home/${user}/.bashrc
 ADD env/tmux.conf /home/${user}/.tmux.conf
 ADD env/tmux.conf.local /home/${user}/.tmux.conf.local
+
+FROM google/cloud-sdk:$GCLOUD_VERSION AS gcloud
+FROM base
+COPY --from=gcloud /google-cloud-sdk /usr/local/google-cloud-sdk
+
+# gcloud configurations
+ENV PATH "/usr/local/google-cloud-sdk/bin:$PATH"
+RUN gcloud config set core/disable_usage_reporting true \
+    && gcloud config set component_manager/disable_update_check true \
+    && gcloud config set metrics/environment github_docker_image \
+    && gcloud components install alpha beta \
+    # groovy configurations
+    && ln -s "${GROOVY_HOME}/bin/grape" /usr/bin/grape \
+    && ln -s "${GROOVY_HOME}/bin/groovy" /usr/bin/groovy \
+    && ln -s "${GROOVY_HOME}/bin/groovyc" /usr/bin/groovyc \
+    && ln -s "${GROOVY_HOME}/bin/groovyConsole" /usr/bin/groovyConsole \
+    && ln -s "${GROOVY_HOME}/bin/groovydoc" /usr/bin/groovydoc \
+    && ln -s "${GROOVY_HOME}/bin/groovysh" /usr/bin/groovysh \
+    && ln -s "${GROOVY_HOME}/bin/java2groovy" /usr/bin/java2groovy
+
+FROM lachlanevenson/k8s-kubectl:$KUBCTL_VERSION AS kubectl
+FROM lachlanevenson/k8s-helm:$HELM_VERSION AS helm
+FROM groovy:2.5.7-jdk8-alpine as groovy
+FROM jenkinsxio/jx:$JX_VERSION AS jx
+FROM base
+COPY --from=groovy /opt/groovy /opt/groovy
+COPY --from=kubectl /usr/local/bin/kubectl /usr/local/bin/kubectl
+COPY --from=helm /usr/local/bin/helm /usr/local/bin/helm
+COPY --from=jx /usr/bin/jx /usr/local/bin/jx
 
 # Setup Environment
 USER ${user}
