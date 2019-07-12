@@ -60,7 +60,6 @@ function setup_environment(){
   export PATH=$PATH:$JAVA_HOME/bin
   export TERM=xterm-256color
   execute_profile_if_exists
-  set -o vi
 
   TMUX_WINDOW=$(tmux ls | cut -d' ' -f2)
   DEFAULT_KUBE="/home/developer/.kube"
