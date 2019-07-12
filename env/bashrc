@@ -60,6 +60,19 @@ function setup_environment(){
   export PATH=$PATH:$JAVA_HOME/bin
   export TERM=xterm-256color
   execute_profile_if_exists
+
+  TMUX_WINDOW=$(tmux ls | cut -d' ' -f2)
+  DEFAULT_KUBE="/home/developer/.kube"
+  TMUX_KUBE="${DEFAULT_KUBE}_tw${TMUX_WINDOW}"
+  DEFAULT_KUBECONFIG="${DEFAULT_KUBE}/config"
+  TMUX_KUBECONFIG="${TMUX_KUBE}/config"
+
+  if [ ! -f ${TMUX_KUBECONFIG} ]
+  then
+    mkdir -p ${TMUX_KUBE}
+    cp ${DEFAULT_KUBECONFIG} ${TMUX_KUBECONFIG}
+  fi
+  export KUBECONFIG=$TMUX_KUBECONFIG
 }
 
 print_motd
