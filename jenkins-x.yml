@@ -73,10 +73,10 @@ pipelineConfig:
               - --cache-dir=/workspace
           # Create the release notes
           - name: changelog
-            image: gcr.io/jenkinsxio/builder-go:0.1.549
+            image: gcr.io/jenkinsxio/builder-go:0.1.571
             command: ./scripts/changelog.sh
           - name: update-bot
-            image: gcr.io/jenkinsxio/builder-jx:0.1.549
+            image: gcr.io/jenkinsxio/builder-jx:0.1.571
             command: ./scripts/update-bot.sh
             args:
               - ${inputs.params.version}
