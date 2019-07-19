@@ -29,6 +29,7 @@ RUN apk --no-cache --update add \
        zsh-doc \
        ca-certificates \
        curl \
+       diffutils \
        docker \
        dos2unix \
        gcc \
@@ -65,6 +66,8 @@ RUN apk --no-cache --update add \
        util-linux \
        vim \
        wget \
+    # install powerline symbols and fonts
+    && apk --no-cache --update add powerline-extra-symbols --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     # Setup dirs for groovy
     && mkdir -p /opt /etc/hub \
     # Install hub-cli
@@ -143,11 +146,7 @@ RUN curl -sL https://pre-commit.com/install-local.py | python - \
     && go get golang.org/x/tools/cmd/gopls \
     && go get golang.org/x/tools/cmd/guru \
     && go get honnef.co/go/tools/cmd/keyify \
-    && chown -R ${user}:${group} /home/${user}
-
-RUN apk add powerline-extra-symbols --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing \
-    && git clone https://github.com/robbyrussell/oh-my-zsh /home/${user}/.oh-my-zsh \
-    && chmod +x /home/developer/.oh-my-zsh/oh-my-zsh.sh
+    && git clone https://github.com/robbyrussell/oh-my-zsh /home/${user}/.oh-my-zsh
 
 ADD env/motd /etc/motd
 ADD env/vim /home/${user}/.vim
