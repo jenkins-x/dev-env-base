@@ -145,6 +145,10 @@ RUN curl -sL https://pre-commit.com/install-local.py | python - \
     && go get honnef.co/go/tools/cmd/keyify \
     && chown -R ${user}:${group} /home/${user}
 
+RUN apk add powerline-extra-symbols --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+    && git clone https://github.com/robbyrussell/oh-my-zsh /home/${user}/.oh-my-zsh \
+    && chmod +x /home/developer/.oh-my-zsh/oh-my-zsh.sh
+
 ADD env/motd /etc/motd
 ADD env/vim /home/${user}/.vim
 ADD env/vimrc /home/${user}/.vimrc
@@ -152,7 +156,7 @@ ADD env/zsh/zshrc /home/${user}/.zshrc
 ADD env/tmux.conf /home/${user}/.tmux.conf
 ADD env/zsh/tmux.conf.local /home/${user}/.tmux.conf.local
 
-
+RUN chown -R ${user}:${group} /home/${user}
 # Setup Environment
 USER ${user}
 ENV PATH /home/${user}/bin:$PATH
