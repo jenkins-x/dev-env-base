@@ -61,7 +61,7 @@ function setup_environment(){
   export TERM=xterm-256color
   execute_profile_if_exists
 
-  TMUX_WINDOW=$(tmux ls | cut -d' ' -f2)
+  TMUX_WINDOW=$(tmux ls | tail -1 | cut -d' ' -f2)
   DEFAULT_KUBE="/home/developer/.kube"
   TMUX_KUBE="${DEFAULT_KUBE}_tw${TMUX_WINDOW}"
   DEFAULT_KUBECONFIG="${DEFAULT_KUBE}/config"
