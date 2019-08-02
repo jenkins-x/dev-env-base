@@ -23,14 +23,13 @@ WORKDIR /
 
 # Install standard dependencies
 RUN apk --no-cache --update add \
-       bash \
-       bash-completion \
-       bash-doc \
        ca-certificates \
        curl \
+       diffutils \
        docker \
        dos2unix \
        findutils \
+       gcc \
        git \
        git-email \
        git-perl \
@@ -68,14 +67,20 @@ RUN apk --no-cache --update add \
        vim \
        wget \
        zip \
+       zsh \
+       zsh-autosuggestions \
+       zsh-doc \
+       zsh-syntax-highlighting \
     && apk add --no-cache --virtual .build-deps \
        gcc \
        musl-dev \
+    # install powerline symbols and fonts
+    && apk --no-cache --update add powerline-extra-symbols --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     # Setup dirs for groovy
     && mkdir -p /opt /etc/hub \
     # Install hub-cli
     && curl -sL https://github.com/github/hub/releases/download/v${HUB_VERSION}/hub-linux-amd64-${HUB_VERSION}.tgz | tar zx --strip 2 -C /usr/local/bin hub-linux-amd64-${HUB_VERSION}/bin/hub \
-    && curl -sL https://raw.githubusercontent.com/github/hub/v${HUB_VERSION}/etc/hub.bash_completion.sh > /etc/hub/.hub.bash_completion.sh
+    && curl -sL https://raw.githubusercontent.com/github/hub/v${HUB_VERSION}/etc/hub.zsh_completion > /etc/hub/.hub.zsh_completion
 
 COPY --from=jx /usr/bin/jx /usr/local/bin/jx
 COPY --from=kubectl /usr/local/bin/kubectl /usr/local/bin/kubectl
@@ -107,7 +112,7 @@ RUN pip install pre-commit \
     && sed -i 's/root:\/bin\/ash/root:\/bin\/bash/' /etc/passwd \
     # Add developer user
     && mkdir -p ${home} \
-    && adduser -h ${home} -u ${uid} -G ${group} -s /bin/bash -D ${user} \
+    && adduser -h ${home} -u ${uid} -G ${group} -s /bin/zsh -D ${user} \
     && echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers \
     && mkdir -p $GOPATH/src $GOPATH/bin \
     # Setup Docker hack - there must be a better way
@@ -121,7 +126,6 @@ RUN pip install pre-commit \
     && go get github.com/mfuentesg/ksd \
     && go get github.com/nsf/gocode \
     && go get golang.org/x/tools/cmd/gorename \
-    && go get gotest.tools/gotestsum \
     && $GOPATH/bin/gocode set propose-builtins true \
     # Install dep
     && curl -sL https://raw.githubusercontent.com/golang/dep/v${DEP_VERSION}/install.sh | sh \
@@ -130,8 +134,8 @@ RUN pip install pre-commit \
     && mkdir -p /home/${user}/.vim/syntax \
     && rm /usr/bin/vi && ln -s /usr/bin/vim /usr/bin/vi \
     && git clone https://github.com/fatih/vim-go.git /home/${user}/.vim/pack/plugins/start/vim-go \
-    && git clone https://github.com/manniwood/vim-buf.git /home/${user}/.vim/pack/plugins/start/vim-buf \
     && git clone https://github.com/hashivim/vim-terraform.git /home/${user}/.vim/pack/plugins/start/vim-terraform \
+    && git clone https://github.com/manniwood/vim-buf.git /home/${user}/.vim/pack/plugins/start/vim-buf \
     && go get github.com/GoogleCloudPlatform/cloudsql-proxy/cmd/cloud_sql_proxy \
     && go get github.com/alecthomas/gometalinter  \
     && go get github.com/davidrjenni/reftools/cmd/fillstruct \
@@ -153,20 +157,22 @@ RUN pip install pre-commit \
     && go get golang.org/x/tools/cmd/goimports \
     && go get golang.org/x/tools/cmd/gopls \
     && go get golang.org/x/tools/cmd/guru \
+    && go get gotest.tools/gotestsum \
     && go get honnef.co/go/tools/cmd/keyify \
-    && chown -R ${user}:${group} /home/${user}
+    && git clone https://github.com/robbyrussell/oh-my-zsh /home/${user}/.oh-my-zsh
 
 ADD env/motd /etc/motd
 ADD env/vim /home/${user}/.vim
 ADD env/vimrc /home/${user}/.vimrc
-ADD env/bash/bashrc /home/${user}/.bashrc
+ADD env/zsh/zshrc /home/${user}/.zshrc
 ADD env/tmux.conf /home/${user}/.tmux.conf
-ADD env/bash/tmux.conf.local /home/${user}/.tmux.conf.local
+ADD env/zsh/tmux.conf.local /home/${user}/.tmux.conf.local
 
+RUN chown -R ${user}:${group} /home/${user}
 # Setup Environment
-USER ${user}
 EXPOSE 1313
 EXPOSE 8080
+USER ${user}
 ENV PATH /home/${user}/bin:$PATH
 WORKDIR /home/$user/go-workspace
-CMD /bin/bash
+CMD /bin/zsh
