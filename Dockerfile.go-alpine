@@ -52,10 +52,10 @@ RUN apk --no-cache --update add \
        openssh-client \
        openssl \
        py-crcmod \
+       py-pip \
        py-setuptools \
        python \
        python-dev \
-       py-pip \
        shadow \
        sudo \
        tar \
@@ -76,8 +76,6 @@ RUN apk --no-cache --update add \
     # Install hub-cli
     && curl -sL https://github.com/github/hub/releases/download/v${HUB_VERSION}/hub-linux-amd64-${HUB_VERSION}.tgz | tar zx --strip 2 -C /usr/local/bin hub-linux-amd64-${HUB_VERSION}/bin/hub \
     && curl -sL https://raw.githubusercontent.com/github/hub/v${HUB_VERSION}/etc/hub.bash_completion.sh > /etc/hub/.hub.bash_completion.sh
-
-RUN pip install yamale
 
 COPY --from=jx /usr/bin/jx /usr/local/bin/jx
 COPY --from=kubectl /usr/local/bin/kubectl /usr/local/bin/kubectl
@@ -102,7 +100,9 @@ RUN ln -s /lib /lib64 \
     && ln -s "${GROOVY_HOME}/bin/java2groovy" /usr/bin/java2groovy
 
 # Install pre-commit (https://pre-commit.com/) & detect-secrets (https://github.com/Yelp/detect-secrets)
-RUN pip install pre-commit detect-secrets \
+RUN pip install pre-commit \
+    detect-secrets \
+    yamale \
     # Set Root to bash not ash and overwrite .bashrc
     && sed -i 's/root:\/bin\/ash/root:\/bin\/bash/' /etc/passwd \
     # Add developer user
@@ -114,13 +114,13 @@ RUN pip install pre-commit detect-secrets \
     && usermod -a -G docker ${user} \
     && usermod -a -G root ${user} \
     # Add go packages
-    && go get golang.org/x/tools/cmd/gorename \
-    && go get github.com/nsf/gocode \
-    && go get github.com/mfuentesg/ksd \
-    && go get github.com/jenkins-x/jx-release-version \
-    && go get github.com/google/ko/cmd/ko \
     && go get github.com/go-delve/delve/cmd/dlv \
     && go get github.com/gohugoio/hugo \
+    && go get github.com/google/ko/cmd/ko \
+    && go get github.com/jenkins-x/jx-release-version \
+    && go get github.com/mfuentesg/ksd \
+    && go get github.com/nsf/gocode \
+    && go get golang.org/x/tools/cmd/gorename \
     && go get gotest.tools/gotestsum \
     && $GOPATH/bin/gocode set propose-builtins true \
     # Install dep
@@ -132,6 +132,7 @@ RUN pip install pre-commit detect-secrets \
     && git clone https://github.com/fatih/vim-go.git /home/${user}/.vim/pack/plugins/start/vim-go \
     && git clone https://github.com/manniwood/vim-buf.git /home/${user}/.vim/pack/plugins/start/vim-buf \
     && git clone https://github.com/hashivim/vim-terraform.git /home/${user}/.vim/pack/plugins/start/vim-terraform \
+    && go get github.com/GoogleCloudPlatform/cloudsql-proxy/cmd/cloud_sql_proxy \
     && go get github.com/alecthomas/gometalinter  \
     && go get github.com/davidrjenni/reftools/cmd/fillstruct \
     && go get github.com/davidrjenni/reftools/cmd/fillswitch \
@@ -139,7 +140,6 @@ RUN pip install pre-commit detect-secrets \
     && go get github.com/fatih/gomodifytags  \
     && go get github.com/fatih/motion  \
     && go get github.com/golangci/golangci-lint/cmd/golangci-lint  \
-    && go get github.com/GoogleCloudPlatform/cloudsql-proxy/cmd/cloud_sql_proxy \
     && go get github.com/josharian/impl  \
     && go get github.com/jstemmer/gotags  \
     && go get github.com/kisielk/errcheck  \

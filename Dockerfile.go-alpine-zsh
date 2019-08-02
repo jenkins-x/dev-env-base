@@ -1,14 +1,14 @@
-ARG JX_VERSION=2.0.123
-ARG KUBCTL_VERSION=v1.14.1
-ARG HELM_VERSION=v2.13.1
-ARG GCLOUD_VERSION=244.0.0-alpine
+ARG JX_VERSION=2.0.549
+ARG KUBCTL_VERSION=v1.15.0
+ARG HELM_VERSION=v2.14.1
+ARG GCLOUD_VERSION=252.0.0-alpine
 
 FROM jenkinsxio/jx:$JX_VERSION as jx
 FROM lachlanevenson/k8s-kubectl:$KUBCTL_VERSION as kubectl
 FROM lachlanevenson/k8s-helm:$HELM_VERSION as helm
 FROM google/cloud-sdk:$GCLOUD_VERSION as gcloud
-FROM groovy:2.5.6-jdk8-alpine as groovy
-FROM golang:1.11.4-alpine3.8
+FROM groovy:2.5.7-jdk8-alpine as groovy
+FROM golang:1.12.7-alpine3.10
 
 ARG user=developer
 ARG group=wheel
@@ -23,15 +23,12 @@ WORKDIR /
 
 # Install standard dependencies
 RUN apk --no-cache --update add \
-       zsh \
-       zsh-autosuggestions \
-       zsh-syntax-highlighting \
-       zsh-doc \
        ca-certificates \
        curl \
        diffutils \
        docker \
        dos2unix \
+       findutils \
        gcc \
        git \
        git-email \
@@ -54,7 +51,10 @@ RUN apk --no-cache --update add \
        openssh-client \
        openssl \
        py-crcmod \
+       py-pip \
+       py-setuptools \
        python \
+       python-dev \
        shadow \
        sudo \
        tar \
@@ -66,6 +66,14 @@ RUN apk --no-cache --update add \
        util-linux \
        vim \
        wget \
+       zip \
+       zsh \
+       zsh-autosuggestions \
+       zsh-doc \
+       zsh-syntax-highlighting \
+    && apk add --no-cache --virtual .build-deps \
+       gcc \
+       musl-dev \
     # install powerline symbols and fonts
     && apk --no-cache --update add powerline-extra-symbols --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     # Setup dirs for groovy
@@ -86,6 +94,7 @@ RUN ln -s /lib /lib64 \
     && gcloud config set core/disable_usage_reporting true \
     && gcloud config set component_manager/disable_update_check true \
     && gcloud config set metrics/environment github_docker_image \
+    && gcloud components install alpha beta \
     # groovy configurations
     && ln -s "${GROOVY_HOME}/bin/grape" /usr/bin/grape \
     && ln -s "${GROOVY_HOME}/bin/groovy" /usr/bin/groovy \
@@ -95,10 +104,12 @@ RUN ln -s /lib /lib64 \
     && ln -s "${GROOVY_HOME}/bin/groovysh" /usr/bin/groovysh \
     && ln -s "${GROOVY_HOME}/bin/java2groovy" /usr/bin/java2groovy
 
-# Install pre-commit (https://pre-commit.com/)
-RUN curl -sL https://pre-commit.com/install-local.py | python - \
-    # Set Root to zsh not ash and overwrite .zshrc
-    && sed -i 's/root:\/bin\/ash/root:\/bin\/zsh/' /etc/passwd \
+# Install pre-commit (https://pre-commit.com/) & detect-secrets (https://github.com/Yelp/detect-secrets)
+RUN pip install pre-commit \
+    detect-secrets \
+    yamale \
+    # Set Root to bash not ash and overwrite .bashrc
+    && sed -i 's/root:\/bin\/ash/root:\/bin\/bash/' /etc/passwd \
     # Add developer user
     && mkdir -p ${home} \
     && adduser -h ${home} -u ${uid} -G ${group} -s /bin/zsh -D ${user} \
@@ -108,13 +119,13 @@ RUN curl -sL https://pre-commit.com/install-local.py | python - \
     && usermod -a -G docker ${user} \
     && usermod -a -G root ${user} \
     # Add go packages
-    && go get golang.org/x/tools/cmd/gorename \
-    && go get github.com/nsf/gocode \
-    && go get github.com/mfuentesg/ksd \
-    && go get github.com/jenkins-x/jx-release-version \
-    && go get github.com/google/ko/cmd/ko \
     && go get github.com/go-delve/delve/cmd/dlv \
     && go get github.com/gohugoio/hugo \
+    && go get github.com/google/ko/cmd/ko \
+    && go get github.com/jenkins-x/jx-release-version \
+    && go get github.com/mfuentesg/ksd \
+    && go get github.com/nsf/gocode \
+    && go get golang.org/x/tools/cmd/gorename \
     && $GOPATH/bin/gocode set propose-builtins true \
     # Install dep
     && curl -sL https://raw.githubusercontent.com/golang/dep/v${DEP_VERSION}/install.sh | sh \
@@ -123,7 +134,9 @@ RUN curl -sL https://pre-commit.com/install-local.py | python - \
     && mkdir -p /home/${user}/.vim/syntax \
     && rm /usr/bin/vi && ln -s /usr/bin/vim /usr/bin/vi \
     && git clone https://github.com/fatih/vim-go.git /home/${user}/.vim/pack/plugins/start/vim-go \
+    && git clone https://github.com/hashivim/vim-terraform.git /home/${user}/.vim/pack/plugins/start/vim-terraform \
     && git clone https://github.com/manniwood/vim-buf.git /home/${user}/.vim/pack/plugins/start/vim-buf \
+    && go get github.com/GoogleCloudPlatform/cloudsql-proxy/cmd/cloud_sql_proxy \
     && go get github.com/alecthomas/gometalinter  \
     && go get github.com/davidrjenni/reftools/cmd/fillstruct \
     && go get github.com/davidrjenni/reftools/cmd/fillswitch \
@@ -131,7 +144,6 @@ RUN curl -sL https://pre-commit.com/install-local.py | python - \
     && go get github.com/fatih/gomodifytags  \
     && go get github.com/fatih/motion  \
     && go get github.com/golangci/golangci-lint/cmd/golangci-lint  \
-    && go get github.com/GoogleCloudPlatform/cloudsql-proxy/cmd/cloud_sql_proxy \
     && go get github.com/josharian/impl  \
     && go get github.com/jstemmer/gotags  \
     && go get github.com/kisielk/errcheck  \
@@ -145,6 +157,7 @@ RUN curl -sL https://pre-commit.com/install-local.py | python - \
     && go get golang.org/x/tools/cmd/goimports \
     && go get golang.org/x/tools/cmd/gopls \
     && go get golang.org/x/tools/cmd/guru \
+    && go get gotest.tools/gotestsum \
     && go get honnef.co/go/tools/cmd/keyify \
     && git clone https://github.com/robbyrussell/oh-my-zsh /home/${user}/.oh-my-zsh
 
@@ -157,6 +170,8 @@ ADD env/zsh/tmux.conf.local /home/${user}/.tmux.conf.local
 
 RUN chown -R ${user}:${group} /home/${user}
 # Setup Environment
+EXPOSE 1313
+EXPOSE 8080
 USER ${user}
 ENV PATH /home/${user}/bin:$PATH
 WORKDIR /home/$user/go-workspace
