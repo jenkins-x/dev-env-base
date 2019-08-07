@@ -1,0 +1,362 @@
+Step: build-step-credential-initializer-82dm2:
+
+Unable to retrieve container logs for docker://ef8dd0200050c662112dbf5fa6c9ed0afcdf9cc7e55aea4d5e16ea9e0afedd57
+Step: build-step-working-dir-initializer-7c5gs:
+
+Unable to retrieve container logs for docker://0e5b6701e3954c4d1f785a4ee6d78e7c0cb06256b9c5f1134f6a7dc54a33a603
+Step: build-step-place-tools:
+
+Unable to retrieve container logs for docker://9cfcf8857403707ab80e8c46d51eff64a6621208416d276117eba9598d4fe548
+Step: build-step-git-source-jenkins-x-dev-env-base-pr-196-t-sbk56:
+
+{"level":"warn","ts":1565211212.5957732,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1565211214.2103503,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/jenkins-x/dev-env-base @ 5572ca4803858cadb5fc8857d873b1fe3789400a in path /workspace/source"}
+Step: build-step-git-merge:
+
+Warning failed to load version: failed to parse version -dev+9e73adc0b: No Major.Minor.Patch elements found
+time="2019-08-07T20:53:34Z" level=info msg="got "
+Using SHAs from PULL_REFS=master:1057b2f15d964b99204ff693ed6e1fd2ba928927,196:5572ca4803858cadb5fc8857d873b1fe3789400a
+ran git fetch --unshallow origin 5572ca4803858cadb5fc8857d873b1fe3789400a: 1057b2f15d964b99204ff693ed6e1fd2ba928927: in 
+ran git checkout master in 
+ran git reset --hard 1057b2f15d964b99204ff693ed6e1fd2ba928927 in 
+ran clean --force -d . in 
+ran git merge 5572ca4803858cadb5fc8857d873b1fe3789400a in 
+Step: build-step-step2:
+
+/builder/home/kaniko-secret.json
+Step: build-step-step3:
+
+[36mINFO[0m[0000] Downloading base image jenkinsxio/**:2.0.568 
+ERROR: logging before flag.Parse: E0807 20:53:42.079692      12 metadata.go:142] while reading 'google-dockercfg' metadata: http status code: 404 while fetching url http://metadata.google.internal./computeMetadata/v1/instance/attributes/google-dockercfg
+ERROR: logging before flag.Parse: E0807 20:53:42.086695      12 metadata.go:159] while reading 'google-dockercfg-url' metadata: http status code: 404 while fetching url http://metadata.google.internal./computeMetadata/v1/instance/attributes/google-dockercfg-url
+[36mINFO[0m[0001] Error while retrieving image from cache: getting file info: stat /workspace/sha256:7264fb6b71105e7b971b6bbe41759e6cdf30a15aaf913d768be436b979ce9abe: no such file or directory 
+[36mINFO[0m[0001] Downloading base image jenkinsxio/**:2.0.568 
+[36mINFO[0m[0002] Skipping unpacking as no commands require it. 
+[36mINFO[0m[0002] Taking snapshot of full filesystem...        
+[36mINFO[0m[0002] Storing source image from stage 0 at path /kaniko/stages/0 
+[36mINFO[0m[0023] Deleting filesystem...                       
+[36mINFO[0m[0023] Downloading base image lachlanevenson/k8s-kubectl:v1.15.0 
+[36mINFO[0m[0024] Error while retrieving image from cache: getting file info: stat /workspace/sha256:598fca6e18579e4419211fd8d79df5afcf8dd351c198fa8c7a433fc133b9950f: no such file or directory 
+[36mINFO[0m[0024] Downloading base image lachlanevenson/k8s-kubectl:v1.15.0 
+[36mINFO[0m[0025] Skipping unpacking as no commands require it. 
+[36mINFO[0m[0025] Taking snapshot of full filesystem...        
+[36mINFO[0m[0031] Storing source image from stage 1 at path /kaniko/stages/1 
+[36mINFO[0m[0033] Deleting filesystem...                       
+[36mINFO[0m[0033] Downloading base image lachlanevenson/k8s-helm:v2.14.1 
+[36mINFO[0m[0034] Error while retrieving image from cache: getting file info: stat /workspace/sha256:169047bc546cd00bad40e70062c6890fc9de4fcee6a6a184f48b5eac6026a223: no such file or directory 
+[36mINFO[0m[0034] Downloading base image lachlanevenson/k8s-helm:v2.14.1 
+[36mINFO[0m[0035] Executing 0 build triggers                   
+[36mINFO[0m[0035] Skipping unpacking as no commands require it. 
+[36mINFO[0m[0035] Taking snapshot of full filesystem...        
+[36mINFO[0m[0035] Storing source image from stage 2 at path /kaniko/stages/2 
+[36mINFO[0m[0038] Deleting filesystem...                       
+[36mINFO[0m[0038] Downloading base image google/cloud-sdk:252.0.0-alpine 
+[36mINFO[0m[0038] Error while retrieving image from cache: getting file info: stat /workspace/sha256:da411a677f72f939dccc52f6f371ebd8dec6108a869a88fa20a9d546b89931c5: no such file or directory 
+[36mINFO[0m[0038] Downloading base image google/cloud-sdk:252.0.0-alpine 
+[36mINFO[0m[0039] Skipping unpacking as no commands require it. 
+[36mINFO[0m[0039] Taking snapshot of full filesystem...        
+[36mINFO[0m[0040] Storing source image from stage 3 at path /kaniko/stages/3 
+[36mINFO[0m[0047] Deleting filesystem...                       
+[36mINFO[0m[0047] Downloading base image groovy:2.5.7-jdk8-alpine 
+[36mINFO[0m[0047] Error while retrieving image from cache: getting file info: stat /workspace/sha256:54452bd30e1385a9cf02a35a39ed62013afa6b44ddce621fc477abd5ed7d40e0: no such file or directory 
+[36mINFO[0m[0047] Downloading base image groovy:2.5.7-jdk8-alpine 
+[36mINFO[0m[0048] Skipping unpacking as no commands require it. 
+[36mINFO[0m[0048] Taking snapshot of full filesystem...        
+[36mINFO[0m[0052] Storing source image from stage 4 at path /kaniko/stages/4 
+[36mINFO[0m[0059] Deleting filesystem...                       
+[36mINFO[0m[0059] Downloading base image golang:1.12.7-alpine3.10 
+[36mINFO[0m[0060] Error while retrieving image from cache: getting file info: stat /workspace/sha256:1b8a5e7aad9be99e4d795ab2e108270ccaa6ca1bceb34d46489e91cc5cd09c36: no such file or directory 
+[36mINFO[0m[0060] Downloading base image golang:1.12.7-alpine3.10 
+ERROR: logging before flag.Parse: E0807 20:54:42.410287      12 metadata.go:142] while reading 'google-dockercfg' metadata: http status code: 404 while fetching url http://metadata.google.internal./computeMetadata/v1/instance/attributes/google-dockercfg
+ERROR: logging before flag.Parse: E0807 20:54:42.416853      12 metadata.go:159] while reading 'google-dockercfg-url' metadata: http status code: 404 while fetching url http://metadata.google.internal./computeMetadata/v1/instance/attributes/google-dockercfg-url
+[36mINFO[0m[0061] Checking for cached layer gcr.io/jenkinsxio/cache:786db6491c25d73d3f70e4d670e133ce8dd9e248e5c31dded7db33ab0bb41028... 
+[36mINFO[0m[0061] Using caching version of cmd: RUN apk --no-cache --update add        bash        bash-completion        bash-doc        ca-certificates        curl        docker        dos2unix        findutils        git        git-email        git-perl        gnupg        grep        jq        less        less-doc        libc-dev        libc6-compat        make        man        man-pages        mdocml-apropos        multitail        ngrep        nmap        openjdk8        openssh-client        openssl        py-crcmod        py-pip        py-setuptools        python        python-dev        shadow        sudo        tar        terraform        tig        tmux        tree        unzip        util-linux        vim        wget        zip     && apk add --no-cache --virtual .build-deps        gcc        musl-dev     && mkdir -p /opt /etc/hub     && curl -sL https://github.com/github/hub/releases/download/v${HUB_VERSION}/hub-linux-amd64-${HUB_VERSION}.tgz | tar zx --strip 2 -C /usr/local/bin hub-linux-amd64-${HUB_VERSION}/bin/hub     && curl -sL https://raw.githubusercontent.com/github/hub/v${HUB_VERSION}/etc/hub.bash_completion.sh > /etc/hub/.hub.bash_completion.sh 
+[36mINFO[0m[0061] Checking for cached layer gcr.io/jenkinsxio/cache:e079d18f091d81ae8b82816704607c050018da41ac5f00f50174fdf1978e1964... 
+[36mINFO[0m[0062] Using caching version of cmd: RUN ln -s /lib /lib64     && gcloud config set core/disable_usage_reporting true     && gcloud config set component_manager/disable_update_check true     && gcloud config set metrics/environment github_docker_image     && gcloud components install alpha beta     && ln -s "${GROOVY_HOME}/bin/grape" /usr/bin/grape     && ln -s "${GROOVY_HOME}/bin/groovy" /usr/bin/groovy     && ln -s "${GROOVY_HOME}/bin/groovyc" /usr/bin/groovyc     && ln -s "${GROOVY_HOME}/bin/groovyConsole" /usr/bin/groovyConsole     && ln -s "${GROOVY_HOME}/bin/groovydoc" /usr/bin/groovydoc     && ln -s "${GROOVY_HOME}/bin/groovysh" /usr/bin/groovysh     && ln -s "${GROOVY_HOME}/bin/java2groovy" /usr/bin/java2groovy 
+[36mINFO[0m[0062] Checking for cached layer gcr.io/jenkinsxio/cache:a64f09e29bfcfa0e2625dc1f55d59e57308732b05999e3a8f7967f3b01b1a8d1... 
+[36mINFO[0m[0062] Using caching version of cmd: RUN pip install pre-commit     detect-secrets     yamale     && sed -i 's/root:\/bin\/ash/root:\/bin\/bash/' /etc/passwd     && mkdir -p ${home}     && adduser -h ${home} -u ${uid} -G ${group} -s /bin/bash -D ${user}     && echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers     && mkdir -p $GOPATH/src $GOPATH/bin     && usermod -a -G docker ${user}     && usermod -a -G root ${user}     && go get github.com/go-delve/delve/cmd/dlv     && go get github.com/gohugoio/hugo     && go get github.com/google/ko/cmd/ko     && go get github.com/jenkins-x/**-release-version     && go get github.com/mfuentesg/ksd     && go get github.com/nsf/gocode     && go get golang.org/x/tools/cmd/gorename     && go get gotest.tools/gotestsum     && $GOPATH/bin/gocode set propose-builtins true     && curl -sL https://raw.githubusercontent.com/golang/dep/v${DEP_VERSION}/install.sh | sh     && mkdir -p /home/${user}/.vim/pack/plugins/start     && mkdir -p /home/${user}/.vim/syntax     && rm /usr/bin/vi && ln -s /usr/bin/vim /usr/bin/vi     && git clone https://github.com/fatih/vim-go.git /home/${user}/.vim/pack/plugins/start/vim-go     && git clone https://github.com/manniwood/vim-buf.git /home/${user}/.vim/pack/plugins/start/vim-buf     && git clone https://github.com/hashivim/vim-terraform.git /home/${user}/.vim/pack/plugins/start/vim-terraform     && go get github.com/GoogleCloudPlatform/cloudsql-proxy/cmd/cloud_sql_proxy     && go get github.com/alecthomas/gometalinter      && go get github.com/davidrjenni/reftools/cmd/fillstruct     && go get github.com/davidrjenni/reftools/cmd/fillswitch     && go get github.com/davidrjenni/reftools/cmd/fixplurals     && go get github.com/fatih/gomodifytags      && go get github.com/fatih/motion      && go get github.com/golangci/golangci-lint/cmd/golangci-lint      && go get github.com/josharian/impl      && go get github.com/jstemmer/gotags      && go get github.com/kisielk/errcheck      && go get github.com/klauspost/asmfmt/cmd/asmfmt      && go get github.com/koron/iferr      && go get github.com/rogpeppe/godef      && go get github.com/stamblerre/gocode      && go get github.com/stamblerre/gocode     && go get github.com/zmb3/gogetdoc      && go get golang.org/x/lint/golint      && go get golang.org/x/tools/cmd/goimports     && go get golang.org/x/tools/cmd/gopls     && go get golang.org/x/tools/cmd/guru     && go get honnef.co/go/tools/cmd/keyify     && chown -R ${user}:${group} /home/${user} 
+[36mINFO[0m[0062] Using files from context: [/workspace/source/env/motd] 
+[36mINFO[0m[0062] Using files from context: [/workspace/source/env/vim] 
+[36mINFO[0m[0062] Using files from context: [/workspace/source/env/vimrc] 
+[36mINFO[0m[0062] Using files from context: [/workspace/source/env/bash/bashrc] 
+[36mINFO[0m[0062] Using files from context: [/workspace/source/env/tmux.conf] 
+[36mINFO[0m[0062] Using files from context: [/workspace/source/env/bash/tmux.conf.local] 
+[36mINFO[0m[0062] cmd: USER                                    
+[36mINFO[0m[0062] cmd: EXPOSE                                  
+[36mINFO[0m[0062] Adding exposed port: 1313/tcp                
+[36mINFO[0m[0062] cmd: EXPOSE                                  
+[36mINFO[0m[0062] Adding exposed port: 8080/tcp                
+[36mINFO[0m[0062] Skipping unpacking as no commands require it. 
+[36mINFO[0m[0062] Taking snapshot of full filesystem...        
+[36mINFO[0m[0085] ARG user=developer                           
+[36mINFO[0m[0085] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0085] ARG group=wheel                              
+[36mINFO[0m[0085] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0085] ARG home=/home/${user}                       
+[36mINFO[0m[0085] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0085] ARG uid=1000                                 
+[36mINFO[0m[0085] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0085] ENV HUB_VERSION 2.11.2                       
+[36mINFO[0m[0085] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0085] ENV DEP_VERSION 0.5.1                        
+[36mINFO[0m[0085] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0085] ENV GOPATH ${home}/go-workspace              
+[36mINFO[0m[0085] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0085] ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH 
+[36mINFO[0m[0085] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0085] ENV GROOVY_HOME /opt/groovy                  
+[36mINFO[0m[0085] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0085] WORKDIR /                                    
+[36mINFO[0m[0085] cmd: workdir                                 
+[36mINFO[0m[0085] Changed working directory to /               
+[36mINFO[0m[0085] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0085] RUN apk --no-cache --update add        bash        bash-completion        bash-doc        ca-certificates        curl        docker        dos2unix        findutils        git        git-email        git-perl        gnupg        grep        jq        less        less-doc        libc-dev        libc6-compat        make        man        man-pages        mdocml-apropos        multitail        ngrep        nmap        openjdk8        openssh-client        openssl        py-crcmod        py-pip        py-setuptools        python        python-dev        shadow        sudo        tar        terraform        tig        tmux        tree        unzip        util-linux        vim        wget        zip     && apk add --no-cache --virtual .build-deps        gcc        musl-dev     && mkdir -p /opt /etc/hub     && curl -sL https://github.com/github/hub/releases/download/v${HUB_VERSION}/hub-linux-amd64-${HUB_VERSION}.tgz | tar zx --strip 2 -C /usr/local/bin hub-linux-amd64-${HUB_VERSION}/bin/hub     && curl -sL https://raw.githubusercontent.com/github/hub/v${HUB_VERSION}/etc/hub.bash_completion.sh > /etc/hub/.hub.bash_completion.sh 
+[36mINFO[0m[0085] Found cached layer, extracting to filesystem 
+[36mINFO[0m[0103] Taking snapshot of files...                  
+[36mINFO[0m[0131] COPY --from=** /usr/bin/** /usr/local/bin/** 
+[36mINFO[0m[0132] Taking snapshot of files...                  
+[36mINFO[0m[0137] COPY --from=kubectl /usr/local/bin/kubectl /usr/local/bin/kubectl 
+[36mINFO[0m[0138] Taking snapshot of files...                  
+[36mINFO[0m[0139] COPY --from=helm /usr/local/bin/helm /usr/local/bin/helm 
+[36mINFO[0m[0139] Taking snapshot of files...                  
+[36mINFO[0m[0141] COPY --from=gcloud /google-cloud-sdk /usr/local/google-cloud-sdk 
+[36mINFO[0m[0143] Taking snapshot of files...                  
+[36mINFO[0m[0148] COPY --from=groovy /opt/groovy /opt/groovy   
+[36mINFO[0m[0148] Taking snapshot of files...                  
+[36mINFO[0m[0149] ENV PATH /usr/local/google-cloud-sdk/bin:$PATH 
+[36mINFO[0m[0149] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0149] RUN ln -s /lib /lib64     && gcloud config set core/disable_usage_reporting true     && gcloud config set component_manager/disable_update_check true     && gcloud config set metrics/environment github_docker_image     && gcloud components install alpha beta     && ln -s "${GROOVY_HOME}/bin/grape" /usr/bin/grape     && ln -s "${GROOVY_HOME}/bin/groovy" /usr/bin/groovy     && ln -s "${GROOVY_HOME}/bin/groovyc" /usr/bin/groovyc     && ln -s "${GROOVY_HOME}/bin/groovyConsole" /usr/bin/groovyConsole     && ln -s "${GROOVY_HOME}/bin/groovydoc" /usr/bin/groovydoc     && ln -s "${GROOVY_HOME}/bin/groovysh" /usr/bin/groovysh     && ln -s "${GROOVY_HOME}/bin/java2groovy" /usr/bin/java2groovy 
+[36mINFO[0m[0149] Found cached layer, extracting to filesystem 
+[36mINFO[0m[0164] Taking snapshot of files...                  
+[36mINFO[0m[0177] RUN pip install pre-commit     detect-secrets     yamale     && sed -i 's/root:\/bin\/ash/root:\/bin\/bash/' /etc/passwd     && mkdir -p ${home}     && adduser -h ${home} -u ${uid} -G ${group} -s /bin/bash -D ${user}     && echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers     && mkdir -p $GOPATH/src $GOPATH/bin     && usermod -a -G docker ${user}     && usermod -a -G root ${user}     && go get github.com/go-delve/delve/cmd/dlv     && go get github.com/gohugoio/hugo     && go get github.com/google/ko/cmd/ko     && go get github.com/jenkins-x/**-release-version     && go get github.com/mfuentesg/ksd     && go get github.com/nsf/gocode     && go get golang.org/x/tools/cmd/gorename     && go get gotest.tools/gotestsum     && $GOPATH/bin/gocode set propose-builtins true     && curl -sL https://raw.githubusercontent.com/golang/dep/v${DEP_VERSION}/install.sh | sh     && mkdir -p /home/${user}/.vim/pack/plugins/start     && mkdir -p /home/${user}/.vim/syntax     && rm /usr/bin/vi && ln -s /usr/bin/vim /usr/bin/vi     && git clone https://github.com/fatih/vim-go.git /home/${user}/.vim/pack/plugins/start/vim-go     && git clone https://github.com/manniwood/vim-buf.git /home/${user}/.vim/pack/plugins/start/vim-buf     && git clone https://github.com/hashivim/vim-terraform.git /home/${user}/.vim/pack/plugins/start/vim-terraform     && go get github.com/GoogleCloudPlatform/cloudsql-proxy/cmd/cloud_sql_proxy     && go get github.com/alecthomas/gometalinter      && go get github.com/davidrjenni/reftools/cmd/fillstruct     && go get github.com/davidrjenni/reftools/cmd/fillswitch     && go get github.com/davidrjenni/reftools/cmd/fixplurals     && go get github.com/fatih/gomodifytags      && go get github.com/fatih/motion      && go get github.com/golangci/golangci-lint/cmd/golangci-lint      && go get github.com/josharian/impl      && go get github.com/jstemmer/gotags      && go get github.com/kisielk/errcheck      && go get github.com/klauspost/asmfmt/cmd/asmfmt      && go get github.com/koron/iferr      && go get github.com/rogpeppe/godef      && go get github.com/stamblerre/gocode      && go get github.com/stamblerre/gocode     && go get github.com/zmb3/gogetdoc      && go get golang.org/x/lint/golint      && go get golang.org/x/tools/cmd/goimports     && go get golang.org/x/tools/cmd/gopls     && go get golang.org/x/tools/cmd/guru     && go get honnef.co/go/tools/cmd/keyify     && chown -R ${user}:${group} /home/${user} 
+[36mINFO[0m[0177] Found cached layer, extracting to filesystem 
+[36mINFO[0m[0232] Taking snapshot of files...                  
+[36mINFO[0m[0283] Using files from context: [/workspace/source/env/motd] 
+[36mINFO[0m[0283] ADD env/motd /etc/motd                       
+[36mINFO[0m[0283] Taking snapshot of files...                  
+[36mINFO[0m[0283] Using files from context: [/workspace/source/env/vim] 
+[36mINFO[0m[0283] ADD env/vim /home/${user}/.vim               
+[36mINFO[0m[0283] Taking snapshot of files...                  
+[36mINFO[0m[0283] Using files from context: [/workspace/source/env/vimrc] 
+[36mINFO[0m[0283] ADD env/vimrc /home/${user}/.vimrc           
+[36mINFO[0m[0283] Taking snapshot of files...                  
+[36mINFO[0m[0283] Using files from context: [/workspace/source/env/bash/bashrc] 
+[36mINFO[0m[0283] ADD env/bash/bashrc /home/${user}/.bashrc    
+[36mINFO[0m[0283] Taking snapshot of files...                  
+[36mINFO[0m[0283] Using files from context: [/workspace/source/env/tmux.conf] 
+[36mINFO[0m[0283] ADD env/tmux.conf /home/${user}/.tmux.conf   
+[36mINFO[0m[0283] Taking snapshot of files...                  
+[36mINFO[0m[0283] Using files from context: [/workspace/source/env/bash/tmux.conf.local] 
+[36mINFO[0m[0283] ADD env/bash/tmux.conf.local /home/${user}/.tmux.conf.local 
+[36mINFO[0m[0283] Taking snapshot of files...                  
+[36mINFO[0m[0283] USER ${user}                                 
+[36mINFO[0m[0283] cmd: USER                                    
+[36mINFO[0m[0283] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0283] EXPOSE 1313                                  
+[36mINFO[0m[0283] cmd: EXPOSE                                  
+[36mINFO[0m[0283] Adding exposed port: 1313/tcp                
+[36mINFO[0m[0283] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0283] EXPOSE 8080                                  
+[36mINFO[0m[0283] cmd: EXPOSE                                  
+[36mINFO[0m[0283] Adding exposed port: 8080/tcp                
+[36mINFO[0m[0283] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0283] ENV PATH /home/${user}/bin:$PATH             
+[36mINFO[0m[0283] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0283] WORKDIR /home/$user/go-workspace             
+[36mINFO[0m[0283] cmd: workdir                                 
+[36mINFO[0m[0283] Changed working directory to /home/developer/go-workspace 
+[36mINFO[0m[0283] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0283] CMD /bin/bash                                
+[36mINFO[0m[0283] No files changed in this command, skipping snapshotting. 
+2019/08/07 20:58:25 existing blob: sha256:0503825856099e6adb39c8297af09547f69684b7016b7f3680ed801aa310baaa
+2019/08/07 20:58:25 existing blob: sha256:893f09c2afb0995b31b535c5ef1e3e6baf15d6e3ba20cca23ab228dc23959bba
+2019/08/07 20:58:25 existing blob: sha256:0bb4ee3360d7674b72befc5a29a65d17c2aad071dba363cedc48e21337e2f9fc
+2019/08/07 20:58:25 existing blob: sha256:db25f79b026e433f1b6001628a0d6d92980a0543cf072fffbaa53f60d70c4b8e
+2019/08/07 20:58:25 existing blob: sha256:4387e72e4ead01c66a9c0f0372d25fb5f5f5bde09d1060327183c47d98b891a4
+2019/08/07 20:58:28 pushed blob: sha256:0eb69a929641b27eda900aa47ee4098c64ff0d02209ef10f304fac1afcf612d5
+2019/08/07 20:58:28 pushed blob: sha256:e78f8f8ab5c891a0e355110ca1ff2533e22318c04db703441b606833b210373a
+2019/08/07 20:58:28 pushed blob: sha256:e47c94785f0eb245607cf8fbfba59d574e81adc30c42ef14614891c9a7156a99
+2019/08/07 20:58:28 pushed blob: sha256:ac407631c04f16e1d7b5e12cdf1ec2baebdfe3a13f01faa102d38b2b497cc36e
+2019/08/07 20:58:29 pushed blob: sha256:92fa29296e772aca13899bb5d127e4840ca57821acce4d3578e29627f7f9c189
+2019/08/07 20:58:29 pushed blob: sha256:342007498b0623990dd0f9593125b1de2df90af54c8c36a94419010279863e2e
+2019/08/07 20:58:29 pushed blob: sha256:a083a170ae69e70bfc5d2832b8ee10e6aee48f76fa5355ed2e15f1319abc1b6e
+2019/08/07 20:58:33 pushed blob: sha256:955cc8d9377f9bf3acb9b94d2b8b8822bcbd7d8be0ad70c682ffbc0f69b575da
+2019/08/07 20:58:41 pushed blob: sha256:7a80c46489c3069f55d1945b96d173b453cb3c8cc520498fb0eab639b36c38dc
+2019/08/07 20:58:41 pushed blob: sha256:84e40e9ae2870c1872450155b886683975615a74508eb858da9758d1005f0f94
+2019/08/07 20:58:54 pushed blob: sha256:8c94a4e0f6abe1543d07448228a60e0d8442e30a446c659ad62006119acee74c
+2019/08/07 20:59:06 pushed blob: sha256:a8ac5bcfc14ee22cb0808e6986560d352d1e4fc6ea383684ae83cf4d42d4b520
+2019/08/07 20:59:25 pushed blob: sha256:1d4aef27d9d725d60538bfdad2e7027bdb39a94ee7c6384a046dba5eb1d2b0a1
+2019/08/07 21:00:21 pushed blob: sha256:3821d35b3195994a1bb8a415ccecffe29efa062fc3fc4e63fab31ed8efd7cb72
+2019/08/07 21:00:44 pushed blob: sha256:20a6272d725749ad52864510d4f9365577f72fa6d8349ed58191d3c90e5ac9ac
+2019/08/07 21:00:46 gcr.io/jenkinsxio/dev-env-base:0.0.0-SNAPSHOT-PR-196-1-go-alpine: digest: sha256:6996dc75afc977a6a290f151f0046af06b6062ad598aebfb9cdde1e0ac7631e4 size: 3366
+Step: build-step-step4:
+
+[36mINFO[0m[0001] Downloading base image jenkinsxio/**:2.0.568 
+ERROR: logging before flag.Parse: E0807 21:00:48.535405      12 metadata.go:142] while reading 'google-dockercfg' metadata: http status code: 404 while fetching url http://metadata.google.internal./computeMetadata/v1/instance/attributes/google-dockercfg
+ERROR: logging before flag.Parse: E0807 21:00:48.541790      12 metadata.go:159] while reading 'google-dockercfg-url' metadata: http status code: 404 while fetching url http://metadata.google.internal./computeMetadata/v1/instance/attributes/google-dockercfg-url
+[36mINFO[0m[0002] Error while retrieving image from cache: getting file info: stat /workspace/sha256:7264fb6b71105e7b971b6bbe41759e6cdf30a15aaf913d768be436b979ce9abe: no such file or directory 
+[36mINFO[0m[0002] Downloading base image jenkinsxio/**:2.0.568 
+[36mINFO[0m[0003] Skipping unpacking as no commands require it. 
+[36mINFO[0m[0003] Taking snapshot of full filesystem...        
+[36mINFO[0m[0038] Storing source image from stage 0 at path /kaniko/stages/0 
+[36mINFO[0m[0058] Deleting filesystem...                       
+[36mINFO[0m[0058] Downloading base image lachlanevenson/k8s-kubectl:v1.15.0 
+[36mINFO[0m[0059] Error while retrieving image from cache: getting file info: stat /workspace/sha256:598fca6e18579e4419211fd8d79df5afcf8dd351c198fa8c7a433fc133b9950f: no such file or directory 
+[36mINFO[0m[0059] Downloading base image lachlanevenson/k8s-kubectl:v1.15.0 
+[36mINFO[0m[0060] Skipping unpacking as no commands require it. 
+[36mINFO[0m[0060] Taking snapshot of full filesystem...        
+[36mINFO[0m[0071] Storing source image from stage 1 at path /kaniko/stages/1 
+[36mINFO[0m[0073] Deleting filesystem...                       
+[36mINFO[0m[0073] Downloading base image lachlanevenson/k8s-helm:v2.14.1 
+ERROR: logging before flag.Parse: E0807 21:02:01.460827      12 metadata.go:142] while reading 'google-dockercfg' metadata: http status code: 404 while fetching url http://metadata.google.internal./computeMetadata/v1/instance/attributes/google-dockercfg
+ERROR: logging before flag.Parse: E0807 21:02:01.468677      12 metadata.go:159] while reading 'google-dockercfg-url' metadata: http status code: 404 while fetching url http://metadata.google.internal./computeMetadata/v1/instance/attributes/google-dockercfg-url
+[36mINFO[0m[0074] Error while retrieving image from cache: getting file info: stat /workspace/sha256:169047bc546cd00bad40e70062c6890fc9de4fcee6a6a184f48b5eac6026a223: no such file or directory 
+[36mINFO[0m[0074] Downloading base image lachlanevenson/k8s-helm:v2.14.1 
+[36mINFO[0m[0075] Executing 0 build triggers                   
+[36mINFO[0m[0075] Skipping unpacking as no commands require it. 
+[36mINFO[0m[0075] Taking snapshot of full filesystem...        
+[36mINFO[0m[0076] Storing source image from stage 2 at path /kaniko/stages/2 
+[36mINFO[0m[0079] Deleting filesystem...                       
+[36mINFO[0m[0079] Downloading base image google/cloud-sdk:252.0.0-alpine 
+[36mINFO[0m[0080] Error while retrieving image from cache: getting file info: stat /workspace/sha256:da411a677f72f939dccc52f6f371ebd8dec6108a869a88fa20a9d546b89931c5: no such file or directory 
+[36mINFO[0m[0080] Downloading base image google/cloud-sdk:252.0.0-alpine 
+[36mINFO[0m[0081] Skipping unpacking as no commands require it. 
+[36mINFO[0m[0081] Taking snapshot of full filesystem...        
+[36mINFO[0m[0086] Storing source image from stage 3 at path /kaniko/stages/3 
+[36mINFO[0m[0093] Deleting filesystem...                       
+[36mINFO[0m[0093] Downloading base image groovy:2.5.7-jdk8-alpine 
+[36mINFO[0m[0094] Error while retrieving image from cache: getting file info: stat /workspace/sha256:54452bd30e1385a9cf02a35a39ed62013afa6b44ddce621fc477abd5ed7d40e0: no such file or directory 
+[36mINFO[0m[0094] Downloading base image groovy:2.5.7-jdk8-alpine 
+[36mINFO[0m[0095] Skipping unpacking as no commands require it. 
+[36mINFO[0m[0095] Taking snapshot of full filesystem...        
+[36mINFO[0m[0124] Storing source image from stage 4 at path /kaniko/stages/4 
+[36mINFO[0m[0133] Deleting filesystem...                       
+[36mINFO[0m[0133] Downloading base image golang:1.12.7-alpine3.10 
+[36mINFO[0m[0133] Error while retrieving image from cache: getting file info: stat /workspace/sha256:1b8a5e7aad9be99e4d795ab2e108270ccaa6ca1bceb34d46489e91cc5cd09c36: no such file or directory 
+[36mINFO[0m[0133] Downloading base image golang:1.12.7-alpine3.10 
+[36mINFO[0m[0134] Checking for cached layer gcr.io/jenkinsxio/cache:618a54795d591876c79a875988a9e1379e49873a7e0f60c4046cd13332248e82... 
+[36mINFO[0m[0135] Using caching version of cmd: RUN apk --no-cache --update add        ca-certificates        curl        diffutils        docker        dos2unix        findutils        gcc        git        git-email        git-perl        gnupg        grep        jq        less        less-doc        libc-dev        libc6-compat        make        man        man-pages        mdocml-apropos        multitail        ngrep        nmap        openjdk8        openssh-client        openssl        py-crcmod        py-pip        py-setuptools        python        python-dev        shadow        sudo        tar        terraform        tig        tmux        tree        unzip        util-linux        vim        wget        zip        zsh        zsh-autosuggestions        zsh-doc        zsh-syntax-highlighting     && apk add --no-cache --virtual .build-deps        gcc        musl-dev     && apk --no-cache --update add powerline-extra-symbols --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing     && mkdir -p /opt /etc/hub     && curl -sL https://github.com/github/hub/releases/download/v${HUB_VERSION}/hub-linux-amd64-${HUB_VERSION}.tgz | tar zx --strip 2 -C /usr/local/bin hub-linux-amd64-${HUB_VERSION}/bin/hub     && curl -sL https://raw.githubusercontent.com/github/hub/v${HUB_VERSION}/etc/hub.zsh_completion > /etc/hub/.hub.zsh_completion 
+[36mINFO[0m[0135] Checking for cached layer gcr.io/jenkinsxio/cache:984a129f24b5ef696ce1d57e4951dd6e1f9bff78b325d2c3570b3a901658a863... 
+[36mINFO[0m[0135] Using caching version of cmd: RUN ln -s /lib /lib64     && gcloud config set core/disable_usage_reporting true     && gcloud config set component_manager/disable_update_check true     && gcloud config set metrics/environment github_docker_image     && gcloud components install alpha beta     && ln -s "${GROOVY_HOME}/bin/grape" /usr/bin/grape     && ln -s "${GROOVY_HOME}/bin/groovy" /usr/bin/groovy     && ln -s "${GROOVY_HOME}/bin/groovyc" /usr/bin/groovyc     && ln -s "${GROOVY_HOME}/bin/groovyConsole" /usr/bin/groovyConsole     && ln -s "${GROOVY_HOME}/bin/groovydoc" /usr/bin/groovydoc     && ln -s "${GROOVY_HOME}/bin/groovysh" /usr/bin/groovysh     && ln -s "${GROOVY_HOME}/bin/java2groovy" /usr/bin/java2groovy 
+[36mINFO[0m[0135] Checking for cached layer gcr.io/jenkinsxio/cache:0114a459fa7f9aa81c8907335b7b283dda39b9fae9cda8361019328c21117dde... 
+[36mINFO[0m[0136] Using caching version of cmd: RUN pip install pre-commit     detect-secrets     yamale     && sed -i 's/root:\/bin\/ash/root:\/bin\/bash/' /etc/passwd     && mkdir -p ${home}     && adduser -h ${home} -u ${uid} -G ${group} -s /bin/zsh -D ${user}     && echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers     && mkdir -p $GOPATH/src $GOPATH/bin     && usermod -a -G docker ${user}     && usermod -a -G root ${user}     && go get github.com/go-delve/delve/cmd/dlv     && go get github.com/gohugoio/hugo     && go get github.com/google/ko/cmd/ko     && go get github.com/jenkins-x/**-release-version     && go get github.com/mfuentesg/ksd     && go get github.com/nsf/gocode     && go get golang.org/x/tools/cmd/gorename     && $GOPATH/bin/gocode set propose-builtins true     && curl -sL https://raw.githubusercontent.com/golang/dep/v${DEP_VERSION}/install.sh | sh     && mkdir -p /home/${user}/.vim/pack/plugins/start     && mkdir -p /home/${user}/.vim/syntax     && rm /usr/bin/vi && ln -s /usr/bin/vim /usr/bin/vi     && git clone https://github.com/fatih/vim-go.git /home/${user}/.vim/pack/plugins/start/vim-go     && git clone https://github.com/hashivim/vim-terraform.git /home/${user}/.vim/pack/plugins/start/vim-terraform     && git clone https://github.com/manniwood/vim-buf.git /home/${user}/.vim/pack/plugins/start/vim-buf     && go get github.com/GoogleCloudPlatform/cloudsql-proxy/cmd/cloud_sql_proxy     && go get github.com/alecthomas/gometalinter      && go get github.com/davidrjenni/reftools/cmd/fillstruct     && go get github.com/davidrjenni/reftools/cmd/fillswitch     && go get github.com/davidrjenni/reftools/cmd/fixplurals     && go get github.com/fatih/gomodifytags      && go get github.com/fatih/motion      && go get github.com/golangci/golangci-lint/cmd/golangci-lint      && go get github.com/josharian/impl      && go get github.com/jstemmer/gotags      && go get github.com/kisielk/errcheck      && go get github.com/klauspost/asmfmt/cmd/asmfmt      && go get github.com/koron/iferr      && go get github.com/rogpeppe/godef      && go get github.com/stamblerre/gocode      && go get github.com/stamblerre/gocode     && go get github.com/zmb3/gogetdoc      && go get golang.org/x/lint/golint      && go get golang.org/x/tools/cmd/goimports     && go get golang.org/x/tools/cmd/gopls     && go get golang.org/x/tools/cmd/guru     && go get gotest.tools/gotestsum     && go get honnef.co/go/tools/cmd/keyify     && git clone https://github.com/robbyrussell/oh-my-zsh /home/${user}/.oh-my-zsh 
+[36mINFO[0m[0136] Using files from context: [/workspace/source/env/motd] 
+[36mINFO[0m[0136] Using files from context: [/workspace/source/env/vim] 
+[36mINFO[0m[0136] Using files from context: [/workspace/source/env/vimrc] 
+[36mINFO[0m[0136] Using files from context: [/workspace/source/env/zsh/zshrc] 
+[36mINFO[0m[0136] Using files from context: [/workspace/source/env/tmux.conf] 
+[36mINFO[0m[0136] Using files from context: [/workspace/source/env/zsh/tmux.conf.local] 
+[36mINFO[0m[0136] Checking for cached layer gcr.io/jenkinsxio/cache:179184c866c75705956c42cf7b5717dbe8559c5a33d136931ff19150c12faa19... 
+[36mINFO[0m[0137] Using caching version of cmd: RUN chown -R ${user}:${group} /home/${user} 
+[36mINFO[0m[0137] cmd: EXPOSE                                  
+[36mINFO[0m[0137] Adding exposed port: 1313/tcp                
+[36mINFO[0m[0137] cmd: EXPOSE                                  
+[36mINFO[0m[0137] Adding exposed port: 8080/tcp                
+[36mINFO[0m[0137] cmd: USER                                    
+[36mINFO[0m[0137] Skipping unpacking as no commands require it. 
+[36mINFO[0m[0137] Taking snapshot of full filesystem...        
+[36mINFO[0m[0139] ARG user=developer                           
+[36mINFO[0m[0139] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0139] ARG group=wheel                              
+[36mINFO[0m[0139] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0139] ARG home=/home/${user}                       
+[36mINFO[0m[0139] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0139] ARG uid=1000                                 
+[36mINFO[0m[0139] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0139] ENV HUB_VERSION 2.11.2                       
+[36mINFO[0m[0139] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0139] ENV DEP_VERSION 0.5.1                        
+[36mINFO[0m[0139] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0139] ENV GOPATH ${home}/go-workspace              
+[36mINFO[0m[0139] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0139] ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH 
+[36mINFO[0m[0139] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0139] ENV GROOVY_HOME /opt/groovy                  
+[36mINFO[0m[0139] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0139] WORKDIR /                                    
+[36mINFO[0m[0139] cmd: workdir                                 
+[36mINFO[0m[0139] Changed working directory to /               
+[36mINFO[0m[0139] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0139] RUN apk --no-cache --update add        ca-certificates        curl        diffutils        docker        dos2unix        findutils        gcc        git        git-email        git-perl        gnupg        grep        jq        less        less-doc        libc-dev        libc6-compat        make        man        man-pages        mdocml-apropos        multitail        ngrep        nmap        openjdk8        openssh-client        openssl        py-crcmod        py-pip        py-setuptools        python        python-dev        shadow        sudo        tar        terraform        tig        tmux        tree        unzip        util-linux        vim        wget        zip        zsh        zsh-autosuggestions        zsh-doc        zsh-syntax-highlighting     && apk add --no-cache --virtual .build-deps        gcc        musl-dev     && apk --no-cache --update add powerline-extra-symbols --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing     && mkdir -p /opt /etc/hub     && curl -sL https://github.com/github/hub/releases/download/v${HUB_VERSION}/hub-linux-amd64-${HUB_VERSION}.tgz | tar zx --strip 2 -C /usr/local/bin hub-linux-amd64-${HUB_VERSION}/bin/hub     && curl -sL https://raw.githubusercontent.com/github/hub/v${HUB_VERSION}/etc/hub.zsh_completion > /etc/hub/.hub.zsh_completion 
+[36mINFO[0m[0139] Found cached layer, extracting to filesystem 
+[36mINFO[0m[0165] Taking snapshot of files...                  
+[36mINFO[0m[0194] COPY --from=** /usr/bin/** /usr/local/bin/** 
+[36mINFO[0m[0195] Taking snapshot of files...                  
+[36mINFO[0m[0200] COPY --from=kubectl /usr/local/bin/kubectl /usr/local/bin/kubectl 
+[36mINFO[0m[0200] Taking snapshot of files...                  
+[36mINFO[0m[0202] COPY --from=helm /usr/local/bin/helm /usr/local/bin/helm 
+[36mINFO[0m[0202] Taking snapshot of files...                  
+[36mINFO[0m[0204] COPY --from=gcloud /google-cloud-sdk /usr/local/google-cloud-sdk 
+[36mINFO[0m[0206] Taking snapshot of files...                  
+[36mINFO[0m[0211] COPY --from=groovy /opt/groovy /opt/groovy   
+[36mINFO[0m[0211] Taking snapshot of files...                  
+[36mINFO[0m[0212] ENV PATH /usr/local/google-cloud-sdk/bin:$PATH 
+[36mINFO[0m[0212] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0212] RUN ln -s /lib /lib64     && gcloud config set core/disable_usage_reporting true     && gcloud config set component_manager/disable_update_check true     && gcloud config set metrics/environment github_docker_image     && gcloud components install alpha beta     && ln -s "${GROOVY_HOME}/bin/grape" /usr/bin/grape     && ln -s "${GROOVY_HOME}/bin/groovy" /usr/bin/groovy     && ln -s "${GROOVY_HOME}/bin/groovyc" /usr/bin/groovyc     && ln -s "${GROOVY_HOME}/bin/groovyConsole" /usr/bin/groovyConsole     && ln -s "${GROOVY_HOME}/bin/groovydoc" /usr/bin/groovydoc     && ln -s "${GROOVY_HOME}/bin/groovysh" /usr/bin/groovysh     && ln -s "${GROOVY_HOME}/bin/java2groovy" /usr/bin/java2groovy 
+[36mINFO[0m[0212] Found cached layer, extracting to filesystem 
+[36mINFO[0m[0227] Taking snapshot of files...                  
+[36mINFO[0m[0240] RUN pip install pre-commit     detect-secrets     yamale     && sed -i 's/root:\/bin\/ash/root:\/bin\/bash/' /etc/passwd     && mkdir -p ${home}     && adduser -h ${home} -u ${uid} -G ${group} -s /bin/zsh -D ${user}     && echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers     && mkdir -p $GOPATH/src $GOPATH/bin     && usermod -a -G docker ${user}     && usermod -a -G root ${user}     && go get github.com/go-delve/delve/cmd/dlv     && go get github.com/gohugoio/hugo     && go get github.com/google/ko/cmd/ko     && go get github.com/jenkins-x/**-release-version     && go get github.com/mfuentesg/ksd     && go get github.com/nsf/gocode     && go get golang.org/x/tools/cmd/gorename     && $GOPATH/bin/gocode set propose-builtins true     && curl -sL https://raw.githubusercontent.com/golang/dep/v${DEP_VERSION}/install.sh | sh     && mkdir -p /home/${user}/.vim/pack/plugins/start     && mkdir -p /home/${user}/.vim/syntax     && rm /usr/bin/vi && ln -s /usr/bin/vim /usr/bin/vi     && git clone https://github.com/fatih/vim-go.git /home/${user}/.vim/pack/plugins/start/vim-go     && git clone https://github.com/hashivim/vim-terraform.git /home/${user}/.vim/pack/plugins/start/vim-terraform     && git clone https://github.com/manniwood/vim-buf.git /home/${user}/.vim/pack/plugins/start/vim-buf     && go get github.com/GoogleCloudPlatform/cloudsql-proxy/cmd/cloud_sql_proxy     && go get github.com/alecthomas/gometalinter      && go get github.com/davidrjenni/reftools/cmd/fillstruct     && go get github.com/davidrjenni/reftools/cmd/fillswitch     && go get github.com/davidrjenni/reftools/cmd/fixplurals     && go get github.com/fatih/gomodifytags      && go get github.com/fatih/motion      && go get github.com/golangci/golangci-lint/cmd/golangci-lint      && go get github.com/josharian/impl      && go get github.com/jstemmer/gotags      && go get github.com/kisielk/errcheck      && go get github.com/klauspost/asmfmt/cmd/asmfmt      && go get github.com/koron/iferr      && go get github.com/rogpeppe/godef      && go get github.com/stamblerre/gocode      && go get github.com/stamblerre/gocode     && go get github.com/zmb3/gogetdoc      && go get golang.org/x/lint/golint      && go get golang.org/x/tools/cmd/goimports     && go get golang.org/x/tools/cmd/gopls     && go get golang.org/x/tools/cmd/guru     && go get gotest.tools/gotestsum     && go get honnef.co/go/tools/cmd/keyify     && git clone https://github.com/robbyrussell/oh-my-zsh /home/${user}/.oh-my-zsh 
+[36mINFO[0m[0240] Found cached layer, extracting to filesystem 
+[36mINFO[0m[0284] Taking snapshot of files...                  
+[36mINFO[0m[0334] Using files from context: [/workspace/source/env/motd] 
+[36mINFO[0m[0334] ADD env/motd /etc/motd                       
+[36mINFO[0m[0334] Taking snapshot of files...                  
+[36mINFO[0m[0334] Using files from context: [/workspace/source/env/vim] 
+[36mINFO[0m[0334] ADD env/vim /home/${user}/.vim               
+[36mINFO[0m[0334] Taking snapshot of files...                  
+[36mINFO[0m[0334] Using files from context: [/workspace/source/env/vimrc] 
+[36mINFO[0m[0334] ADD env/vimrc /home/${user}/.vimrc           
+[36mINFO[0m[0334] Taking snapshot of files...                  
+[36mINFO[0m[0334] Using files from context: [/workspace/source/env/zsh/zshrc] 
+[36mINFO[0m[0334] ADD env/zsh/zshrc /home/${user}/.zshrc       
+[36mINFO[0m[0334] Taking snapshot of files...                  
+[36mINFO[0m[0335] Using files from context: [/workspace/source/env/tmux.conf] 
+[36mINFO[0m[0335] ADD env/tmux.conf /home/${user}/.tmux.conf   
+[36mINFO[0m[0335] Taking snapshot of files...                  
+[36mINFO[0m[0335] Using files from context: [/workspace/source/env/zsh/tmux.conf.local] 
+[36mINFO[0m[0335] ADD env/zsh/tmux.conf.local /home/${user}/.tmux.conf.local 
+[36mINFO[0m[0335] Taking snapshot of files...                  
+[36mINFO[0m[0335] RUN chown -R ${user}:${group} /home/${user}  
+[36mINFO[0m[0335] Found cached layer, extracting to filesystem 
+[36mINFO[0m[0373] Taking snapshot of files...                  
+[36mINFO[0m[0501] EXPOSE 1313                                  
+[36mINFO[0m[0501] cmd: EXPOSE                                  
+[36mINFO[0m[0501] Adding exposed port: 1313/tcp                
+[36mINFO[0m[0501] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0501] EXPOSE 8080                                  
+[36mINFO[0m[0501] cmd: EXPOSE                                  
+[36mINFO[0m[0501] Adding exposed port: 8080/tcp                
+[36mINFO[0m[0501] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0501] USER ${user}                                 
+[36mINFO[0m[0501] cmd: USER                                    
+[36mINFO[0m[0501] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0501] ENV PATH /home/${user}/bin:$PATH             
+[36mINFO[0m[0501] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0501] WORKDIR /home/$user/go-workspace             
+[36mINFO[0m[0501] cmd: workdir                                 
+[36mINFO[0m[0501] Changed working directory to /home/developer/go-workspace 
+[36mINFO[0m[0501] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0501] CMD /bin/zsh                                 
+[36mINFO[0m[0501] No files changed in this command, skipping snapshotting. 
+2019/08/07 21:09:09 existing blob: sha256:893f09c2afb0995b31b535c5ef1e3e6baf15d6e3ba20cca23ab228dc23959bba
+2019/08/07 21:09:09 existing blob: sha256:4387e72e4ead01c66a9c0f0372d25fb5f5f5bde09d1060327183c47d98b891a4
+2019/08/07 21:09:09 existing blob: sha256:db25f79b026e433f1b6001628a0d6d92980a0543cf072fffbaa53f60d70c4b8e
+2019/08/07 21:09:09 existing blob: sha256:0bb4ee3360d7674b72befc5a29a65d17c2aad071dba363cedc48e21337e2f9fc
+2019/08/07 21:09:09 existing blob: sha256:0503825856099e6adb39c8297af09547f69684b7016b7f3680ed801aa310baaa
+2019/08/07 21:09:11 pushed blob: sha256:9bd70a747ca4697d1864ad8560936b3693e23391021c38003f2c6813e8645f4d
+2019/08/07 21:09:11 pushed blob: sha256:51f323073aa2c164aad2d4f0903bd1d56e86e0d055f88a3297195dddb12b7327
+2019/08/07 21:09:11 pushed blob: sha256:da1411fe6d7f0c8307a9aec5df24084c0286d40fe4663b601d351e3f5cf930fa
+2019/08/07 21:09:11 pushed blob: sha256:98ecd42c67438ab0ce20f3fb02c3703483e10c6a02d070fb817ebfa3e5415e9b
+2019/08/07 21:09:11 pushed blob: sha256:e9b101d2af0f3b380e8ddfb994e948a362934a319ff04c0958b6960bf2936cb7
+2019/08/07 21:09:12 pushed blob: sha256:ed93fe0a56e7d636bfbf1e38cd66dfcdb6c2ab95f07c475b8457d130d0789fd4
+2019/08/07 21:09:12 pushed blob: sha256:71bf6717e43519d0abf41ef0f006826d9a6eaa07859712190ad72bd8e193419a
+2019/08/07 21:09:16 pushed blob: sha256:c349392d46872e6091b71abace48c35dd586bf927202fafe18ff853d09e8d1f6
+2019/08/07 21:09:26 pushed blob: sha256:1593f5937490f3ab31c4f16b46aca02b27536d667403cdffd81763d0dd335f5b
+2019/08/07 21:09:26 pushed blob: sha256:6f1ef7cbf98e30fe1de2e1426f38acc31d9ecf8aec3530c17fe354f6d5b13970
+2019/08/07 21:09:39 pushed blob: sha256:b58da021a5629ca2eb40918ea3fe8968410a6132ddb287ccfb62e9f00707bef0
+2019/08/07 21:09:46 pushed blob: sha256:f46ef282c0974d04997eee40bca2129ae72d6f5e41df704bfde7a6a1d9978373
+2019/08/07 21:10:22 pushed blob: sha256:b89d79f213e9e1a9a4c0f82eec6517d24912142bdc3614704edc67a50a20446e
+2019/08/07 21:11:35 pushed blob: sha256:d1b36ef5cafb746dc5746f82ee4473112e45a9c8ec6ca245003a78e0671721de
+2019/08/07 21:11:39 pushed blob: sha256:8439da5cf9a472eece3459009106ba0769ba96ca881f69cfb0e4e47b913535bc
+2019/08/07 21:12:04 pushed blob: sha256:58475822930664ac97bc53162740d842256c68cf6ab877548c1dabeb6c100757
+2019/08/07 21:12:05 gcr.io/jenkinsxio/dev-env-base:0.0.0-SNAPSHOT-PR-196-1-go-alpine-zsh: digest: sha256:0517d337b597722a347e72eb7db6fc41b8ef468456b6b3ed2a1a9e2534a20908 size: 3532
