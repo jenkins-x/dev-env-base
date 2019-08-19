@@ -8,7 +8,7 @@ FROM lachlanevenson/k8s-kubectl:$KUBCTL_VERSION as kubectl
 FROM lachlanevenson/k8s-helm:$HELM_VERSION as helm
 FROM google/cloud-sdk:$GCLOUD_VERSION as gcloud
 FROM groovy:2.5.7-jdk8-alpine as groovy
-FROM golang:1.12.7-alpine3.10
+FROM golang:1.12.9-alpine3.10
 
 ARG user=developer
 ARG group=wheel
