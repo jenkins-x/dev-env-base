@@ -3,7 +3,7 @@ ARG KUBCTL_VERSION=v1.15.0
 ARG HELM_VERSION=v2.14.1
 ARG GCLOUD_VERSION=252.0.0-alpine
 
-FROM jenkinsxio/jx:$JX_VERSION as jx
+FROM gcr.io/jenkinsxio/jx:$JX_VERSION as jx
 FROM lachlanevenson/k8s-kubectl:$KUBCTL_VERSION as kubectl
 FROM lachlanevenson/k8s-helm:$HELM_VERSION as helm
 FROM google/cloud-sdk:$GCLOUD_VERSION as gcloud
