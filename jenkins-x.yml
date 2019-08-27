@@ -41,9 +41,9 @@ pipelineConfig:
               - --cache=true
               - --cache-dir=/workspace
               - --build-arg
-              - SHELL="bash"
+              - "SHELL=bash"
               - --build-arg
-              - SHELL_PACKAGES="bash-completion"
+              - "SHELL_PACKAGES=bash-completion"
           - image: gcr.io/kaniko-project/executor:9912ccbf8d22bbafbf971124600fbb0b13b9cbd6
             command: /kaniko/executor
             args:
@@ -54,9 +54,9 @@ pipelineConfig:
               - --cache=true
               - --cache-dir=/workspace
               - --build-arg
-              - SHELL="zsh"
+              - "SHELL=zsh"
               - --build-arg
-              - SHELL_PACKAGES="zsh-autosuggestions zsh-syntax-highlighting"
+              - "SHELL_PACKAGES=zsh-autosuggestions zsh-syntax-highlighting"
     release:
       pipeline:
         options:
@@ -103,9 +103,9 @@ pipelineConfig:
               - --cache=true
               - --cache-dir=/workspace
               - --build-arg
-              - SHELL="bash"
+              - "SHELL=bash"
               - --build-arg
-              - SHELL_PACKAGES="bash-completion"
+              - "SHELL_PACKAGES=bash-completion"
           - image: gcr.io/kaniko-project/executor:9912ccbf8d22bbafbf971124600fbb0b13b9cbd6
             command: /kaniko/executor
             args:
@@ -116,9 +116,9 @@ pipelineConfig:
               - --cache=true
               - --cache-dir=/workspace
               - --build-arg
-              - SHELL="zsh"
+              - "SHELL=zsh"
               - --build-arg
-              - SHELL_PACKAGES="zsh-autosuggestions zsh-syntax-highlighting"
+              - "SHELL_PACKAGES=zsh-autosuggestions zsh-syntax-highlighting"
           # Create the release notes
           - name: changelog
             image: gcr.io/jenkinsxio/builder-go:0.1.571
