@@ -118,6 +118,7 @@ RUN pip install pre-commit \
     && go get github.com/jenkins-x/jx-release-version \
     && go get github.com/mfuentesg/ksd \
     && go get github.com/nsf/gocode \
+    && go get github.com/starkandwayne/safe \
     && go get golang.org/x/tools/cmd/gorename \
     && go get gotest.tools/gotestsum \
     && $GOPATH/bin/gocode set propose-builtins true \
