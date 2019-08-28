@@ -27,6 +27,7 @@ RUN apk --no-cache --update add \
        $SHELL_PACKAGES \
        ca-certificates \
        curl \
+       diffutils \
        docker \
        dos2unix \
        findutils \
@@ -64,6 +65,7 @@ RUN apk --no-cache --update add \
        tree \
        unzip \
        util-linux \
+       vault \
        vim \
        wget \
        zip \
