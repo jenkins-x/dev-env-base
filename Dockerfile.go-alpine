@@ -11,6 +11,8 @@ ARG user=developer
 ARG group=wheel
 ARG home=/home/${user}
 ARG uid=1000
+ARG SHELL
+ARG SHELL_PACKAGES
 ENV HUB_VERSION 2.11.2
 ENV DEP_VERSION 0.5.1
 ENV GOPATH ${home}/go-workspace
@@ -20,9 +22,9 @@ WORKDIR /
 
 # Install standard dependencies
 RUN apk --no-cache --update add \
-       bash \
-       bash-completion \
-       bash-doc \
+       $SHELL \
+       ${SHELL}-doc \
+       $SHELL_PACKAGES \
        ca-certificates \
        curl \
        docker \
@@ -72,7 +74,7 @@ RUN apk --no-cache --update add \
     && mkdir -p /opt /etc/hub \
     # Install hub-cli
     && curl -sL https://github.com/github/hub/releases/download/v${HUB_VERSION}/hub-linux-amd64-${HUB_VERSION}.tgz | tar zx --strip 2 -C /usr/local/bin hub-linux-amd64-${HUB_VERSION}/bin/hub \
-    && curl -sL https://raw.githubusercontent.com/github/hub/v${HUB_VERSION}/etc/hub.bash_completion.sh > /etc/hub/.hub.bash_completion.sh
+    && curl -sL https://raw.githubusercontent.com/github/hub/v${HUB_VERSION}/etc/hub.${SHELL}_completion.sh > /etc/hub/.hub.${SHELL}_completion.sh
 
 COPY --from=jx /usr/bin/jx /usr/local/bin/jx
 COPY --from=kubectl /usr/local/bin/kubectl /usr/local/bin/kubectl
@@ -100,11 +102,10 @@ RUN ln -s /lib /lib64 \
 RUN pip install pre-commit \
     detect-secrets \
     yamale \
-    # Set Root to bash not ash and overwrite .bashrc
-    && sed -i 's/root:\/bin\/ash/root:\/bin\/bash/' /etc/passwd \
+    && sed -i "s/root:\/bin\/ash/root:\/bin\/$SHELL/" /etc/passwd \
     # Add developer user
     && mkdir -p ${home} \
-    && adduser -h ${home} -u ${uid} -G ${group} -s /bin/bash -D ${user} \
+    && adduser -h ${home} -u ${uid} -G ${group} -s /bin/${SHELL} -D ${user} \
     && echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers \
     && mkdir -p $GOPATH/src $GOPATH/bin \
     # Setup Docker hack - there must be a better way
@@ -151,19 +152,20 @@ RUN pip install pre-commit \
     && go get golang.org/x/tools/cmd/gopls \
     && go get golang.org/x/tools/cmd/guru \
     && go get honnef.co/go/tools/cmd/keyify \
-    && chown -R ${user}:${group} /home/${user}
+    && git clone https://github.com/robbyrussell/oh-my-zsh /home/${user}/.oh-my-zsh
 
 ADD env/motd /etc/motd
 ADD env/vim /home/${user}/.vim
 ADD env/vimrc /home/${user}/.vimrc
-ADD env/bash/bashrc /home/${user}/.bashrc
+ADD env/${SHELL}/${SHELL}rc /home/${user}/.${SHELL}rc
 ADD env/tmux.conf /home/${user}/.tmux.conf
-ADD env/bash/tmux.conf.local /home/${user}/.tmux.conf.local
+ADD env/${SHELL}/tmux.conf.local /home/${user}/.tmux.conf.local
 
+RUN chown -R ${user}:${group} /home/${user}
 # Setup Environment
 USER ${user}
 EXPOSE 1313
 EXPOSE 8080
 ENV PATH /home/${user}/bin:$PATH
 WORKDIR /home/$user/go-workspace
-CMD /bin/bash
+CMD /bin/${SHELL}
