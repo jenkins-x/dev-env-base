@@ -139,7 +139,6 @@ RUN ln -s /lib /lib64 \
     && go get github.com/davidrjenni/reftools/cmd/fixplurals \
     && go get github.com/fatih/gomodifytags  \
     && go get github.com/fatih/motion  \
-    && go get github.com/golangci/golangci-lint/cmd/golangci-lint  \
     && go get github.com/josharian/impl  \
     && go get github.com/jstemmer/gotags  \
     && go get github.com/kisielk/errcheck  \
