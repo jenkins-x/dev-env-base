@@ -52,6 +52,7 @@ function setup_environment(){
   export JAVA_HOME=$(dirname $(readlink -f $(which java)) | sed 's:/bin::')
   export PATH=$PATH:$JAVA_HOME/bin
   export TERM=xterm-256color
+  export GOTESTSUM_FORMAT=short
   execute_profile_if_exists
 
   TMUX_WINDOW=$(tmux ls | tail -1 | cut -d' ' -f2)
