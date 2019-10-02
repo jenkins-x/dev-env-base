@@ -3,7 +3,7 @@ ARG JX_VERSION=2.0.806
 FROM gcr.io/jenkinsxio/jx:$JX_VERSION as jx
 FROM lachlanevenson/k8s-kubectl:v1.16.0 as kubectl
 FROM lachlanevenson/k8s-helm:v2.14.3 as helm
-FROM google/cloud-sdk:264.0.0-alpine as gcloud
+FROM google/cloud-sdk:265.0.0-alpine as gcloud
 FROM groovy:2.5.7-jdk8-alpine as groovy
 FROM golang:1.12.9-alpine3.10 as base
 
