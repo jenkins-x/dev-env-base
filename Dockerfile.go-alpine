@@ -167,6 +167,7 @@ ADD --chown=1000:wheel env/${SHELL}/tmux.conf.local /home/${user}/.tmux.conf.loc
 # Setup Environment
 USER ${user}
 EXPOSE 1313
+EXPOSE 2345
 EXPOSE 8080
 ENV PATH /home/${user}/bin:$PATH
 WORKDIR /home/$user/go-workspace
