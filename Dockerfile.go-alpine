@@ -25,6 +25,7 @@ RUN apk --no-cache --update add \
        $SHELL \
        ${SHELL}-doc \
        $SHELL_PACKAGES \
+       ack \
        bind-tools \
        ca-certificates \
        curl \
@@ -104,6 +105,7 @@ RUN ln -s /lib /lib64 \
     && pip install pre-commit \
     detect-secrets \
     yamale \
+    yamllint \
     && sed -i "s/root:\/bin\/ash/root:\/bin\/$SHELL/" /etc/passwd \
     # Add developer user
     && mkdir -p ${home} \
@@ -133,6 +135,7 @@ RUN ln -s /lib /lib64 \
     && git clone https://github.com/fatih/vim-go.git /home/${user}/.vim/pack/plugins/start/vim-go \
     && git clone https://github.com/manniwood/vim-buf.git /home/${user}/.vim/pack/plugins/start/vim-buf \
     && git clone https://github.com/hashivim/vim-terraform.git /home/${user}/.vim/pack/plugins/start/vim-terraform \
+    && git clone https://github.com/towolf/vim-helm /home/${user}/.vim/pack/plugins/start/vim-helm \
     && go get github.com/GoogleCloudPlatform/cloudsql-proxy/cmd/cloud_sql_proxy \
     && go get github.com/alecthomas/gometalinter  \
     && go get github.com/davidrjenni/reftools/cmd/fillstruct \
