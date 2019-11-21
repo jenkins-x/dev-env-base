@@ -15,6 +15,7 @@ ARG SHELL
 ARG SHELL_PACKAGES
 ENV HUB_VERSION 2.11.2
 ENV DEP_VERSION 0.5.1
+ENV VELERO_VERSION 1.1.0
 ENV GOPATH ${home}/go-workspace
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 ENV GROOVY_HOME /opt/groovy
@@ -79,7 +80,11 @@ RUN apk --no-cache --update add \
     && mkdir -p /opt /etc/hub \
     # Install hub-cli
     && curl -sL https://github.com/github/hub/releases/download/v${HUB_VERSION}/hub-linux-amd64-${HUB_VERSION}.tgz | tar zx --strip 2 -C /usr/local/bin hub-linux-amd64-${HUB_VERSION}/bin/hub \
-    && curl -sL https://raw.githubusercontent.com/github/hub/v${HUB_VERSION}/etc/hub.${SHELL}_completion.sh > /etc/hub/.hub.${SHELL}_completion.sh
+    && curl -sL https://raw.githubusercontent.com/github/hub/v${HUB_VERSION}/etc/hub.${SHELL}_completion.sh > /etc/hub/.hub.${SHELL}_completion.sh \
+    # velero
+    && curl -f -L https://github.com/heptio/velero/releases/download/v${VELERO_VERSION}/velero-v${VELERO_VERSION}-linux-amd64.tar.gz | tar xzv \
+    && mv velero-v${VELERO_VERSION}-linux-amd64/velero /usr/local/bin/ \
+    && rm -rf velero-v${VELERO_VERSION}-linux-amd64
 
 COPY --from=kubectl /usr/local/bin/kubectl /usr/local/bin/kubectl
 COPY --from=helm /usr/local/bin/helm /usr/local/bin/helm
