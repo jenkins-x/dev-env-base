@@ -16,6 +16,7 @@ ARG SHELL_PACKAGES
 ENV HUB_VERSION 2.11.2
 ENV DEP_VERSION 0.5.1
 ENV VELERO_VERSION 1.1.0
+ENV SKAFFOLD_VERSION 1.0.1
 ENV GOPATH ${home}/go-workspace
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 ENV GROOVY_HOME /opt/groovy
@@ -84,7 +85,10 @@ RUN apk --no-cache --update add \
     # velero
     && curl -f -L https://github.com/heptio/velero/releases/download/v${VELERO_VERSION}/velero-v${VELERO_VERSION}-linux-amd64.tar.gz | tar xzv \
     && mv velero-v${VELERO_VERSION}-linux-amd64/velero /usr/local/bin/ \
-    && rm -rf velero-v${VELERO_VERSION}-linux-amd64
+    && rm -rf velero-v${VELERO_VERSION}-linux-amd64 \
+    && curl -f -Lo skaffold https://storage.googleapis.com/skaffold/releases/v${SKAFFOLD_VERSION}/skaffold-linux-amd64 \
+    && chmod +x skaffold \
+    && mv skaffold /usr/local/bin
 
 COPY --from=kubectl /usr/local/bin/kubectl /usr/local/bin/kubectl
 COPY --from=helm /usr/local/bin/helm /usr/local/bin/helm
