@@ -1,4 +1,4 @@
-ARG JX_VERSION=2.0.1094
+ARG JX_VERSION=2.0.1102
 
 FROM gcr.io/jenkinsxio/jx:$JX_VERSION as jx
 FROM lachlanevenson/k8s-kubectl:v1.17.0 as kubectl
@@ -167,7 +167,7 @@ RUN ln -s /lib /lib64 \
     && go get github.com/zmb3/gogetdoc  \
     && go get golang.org/x/lint/golint  \
     && go get golang.org/x/tools/cmd/goimports \
-    && go get golang.org/x/tools/cmd/gopls \
+    && go get golang.org/x/tools/gopls \
     && go get golang.org/x/tools/cmd/guru \
     && go get honnef.co/go/tools/cmd/keyify \
     && git clone https://github.com/robbyrussell/oh-my-zsh /home/${user}/.oh-my-zsh \
