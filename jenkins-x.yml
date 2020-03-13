@@ -31,7 +31,7 @@ pipelineConfig:
               - kaniko-secret
               - -f
               - /builder/home/kaniko-secret.json
-          - image: gcr.io/kaniko-project/executor:9912ccbf8d22bbafbf971124600fbb0b13b9cbd6
+          - image: gcr.io/kaniko-project/executor:59cb0ebec969fde3f8c8c7c9468d50580eb1e1ac
             command: /kaniko/executor
             args:
               - --dockerfile=Dockerfile.go-alpine
@@ -44,7 +44,7 @@ pipelineConfig:
               - "SHELL=bash"
               - --build-arg
               - "SHELL_PACKAGES=bash-completion"
-          - image: gcr.io/kaniko-project/executor:9912ccbf8d22bbafbf971124600fbb0b13b9cbd6
+          - image: gcr.io/kaniko-project/executor:59cb0ebec969fde3f8c8c7c9468d50580eb1e1ac
             command: /kaniko/executor
             args:
               - --dockerfile=Dockerfile.go-alpine
@@ -67,7 +67,7 @@ pipelineConfig:
               requests:
                 memory: 4Gi
         agent:
-          image: gcr.io/kaniko-project/executor:9912ccbf8d22bbafbf971124600fbb0b13b9cbd6
+          image: gcr.io/kaniko-project/executor:59cb0ebec969fde3f8c8c7c9468d50580eb1e1ac
         stages:
         - name: release
           environment:
@@ -93,7 +93,7 @@ pipelineConfig:
               - kaniko-secret
               - -f
               - /builder/home/kaniko-secret.json
-          - image: gcr.io/kaniko-project/executor:9912ccbf8d22bbafbf971124600fbb0b13b9cbd6
+          - image: gcr.io/kaniko-project/executor:59cb0ebec969fde3f8c8c7c9468d50580eb1e1ac
             command: /kaniko/executor
             args:
               - --dockerfile=Dockerfile.go-alpine
@@ -106,7 +106,7 @@ pipelineConfig:
               - "SHELL=bash"
               - --build-arg
               - "SHELL_PACKAGES=bash-completion"
-          - image: gcr.io/kaniko-project/executor:9912ccbf8d22bbafbf971124600fbb0b13b9cbd6
+          - image: gcr.io/kaniko-project/executor:59cb0ebec969fde3f8c8c7c9468d50580eb1e1ac
             command: /kaniko/executor
             args:
               - --dockerfile=Dockerfile.go-alpine
