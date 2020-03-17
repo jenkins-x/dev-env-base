@@ -5,7 +5,7 @@ FROM lachlanevenson/k8s-kubectl:v1.13.12 as kubectl
 FROM lachlanevenson/k8s-helm:v2.14.1 as helm
 FROM google/cloud-sdk:282.0.0-alpine as gcloud
 FROM groovy:3.0-jdk8-alpine as groovy
-FROM golang:1.12.17-alpine3.10 as base
+FROM golang:1.13.1-alpine3.10 as base
 
 ARG user=developer
 ARG group=wheel
