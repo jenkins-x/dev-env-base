@@ -5,7 +5,7 @@ FROM lachlanevenson/k8s-kubectl:v1.13.12 as kubectl
 FROM lachlanevenson/k8s-helm:v2.14.1 as helm
 FROM google/cloud-sdk:286.0.0-alpine as gcloud
 FROM groovy:3.0-jdk8-alpine as groovy
-FROM golang:1.13.1-alpine3.10 as base
+FROM golang:1.12.15-alpine3.10 as base
 
 ARG user=developer
 ARG group=wheel
@@ -148,8 +148,7 @@ RUN ln -s /lib /lib64 \
     && git clone https://github.com/fatih/vim-go.git /home/${user}/.vim/pack/plugins/start/vim-go \
     && git clone https://github.com/manniwood/vim-buf.git /home/${user}/.vim/pack/plugins/start/vim-buf \
     && git clone https://github.com/hashivim/vim-terraform.git /home/${user}/.vim/pack/plugins/start/vim-terraform \
-    && git clone https://github.com/towolf/vim-helm /home/${user}/.vim/pack/plugins/start/vim-helm \
-    && go get github.com/GoogleCloudPlatform/cloudsql-proxy/cmd/cloud_sql_proxy \
+    && git clone https://github.com/towolf/vim-helm /home/${user}/.vim/pack/plugins/start/vim-helm \    
     && go get github.com/alecthomas/gometalinter  \
     && go get github.com/davidrjenni/reftools/cmd/fillstruct \
     && go get github.com/davidrjenni/reftools/cmd/fillswitch \
