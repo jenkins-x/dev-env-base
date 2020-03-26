@@ -22,6 +22,7 @@ ENV GOPLS_VERSION v0.2
 ENV GOPATH ${home}/go-workspace
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 ENV GROOVY_HOME /opt/groovy
+ENV GH_CLI_VERSION 0.6.2
 WORKDIR /
 
 # Install standard dependencies
@@ -172,6 +173,10 @@ RUN ln -s /lib /lib64 \
     && go get honnef.co/go/tools/cmd/keyify \
     && git clone https://github.com/robbyrussell/oh-my-zsh /home/${user}/.oh-my-zsh \
     && chown -R ${user}:${group} /home/${user}
+    
+RUN yum update  -y && \    
+    wget https://github.com/cli/cli/releases/download/v${GH_CLI_VERSION}/gh_${GH_CLI_VERSION}_linux_386.rpm \
+    sudo yum localinstall gh_*_linux_amd64.rpm
 
 ADD --chown=1000:wheel env/motd /etc/motd
 ADD --chown=1000:wheel env/vim /home/${user}/.vim
