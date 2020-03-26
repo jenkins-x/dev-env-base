@@ -63,7 +63,7 @@ RUN apk --no-cache --update add \
        py-pip \
        py-setuptools \
        python \
-       python-dev \
+       python-dev \       
        shadow \
        sudo \
        tar \
@@ -174,7 +174,8 @@ RUN ln -s /lib /lib64 \
     && git clone https://github.com/robbyrussell/oh-my-zsh /home/${user}/.oh-my-zsh \
     && chown -R ${user}:${group} /home/${user}
     
-RUN yum update  -y && \    
+RUN yum clean all && \
+    yum update -y && \    
     wget https://github.com/cli/cli/releases/download/v${GH_CLI_VERSION}/gh_${GH_CLI_VERSION}_linux_386.rpm \
     sudo yum localinstall gh_*_linux_amd64.rpm
 
