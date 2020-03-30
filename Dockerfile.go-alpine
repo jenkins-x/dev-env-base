@@ -1,4 +1,4 @@
-ARG JX_VERSION=2.0.1257
+ARG JX_VERSION=2.0.1258
 
 FROM gcr.io/jenkinsxio/jx:$JX_VERSION as jx
 FROM lachlanevenson/k8s-kubectl:v1.13.12 as kubectl
@@ -148,8 +148,7 @@ RUN ln -s /lib /lib64 \
     && git clone https://github.com/fatih/vim-go.git /home/${user}/.vim/pack/plugins/start/vim-go \
     && git clone https://github.com/manniwood/vim-buf.git /home/${user}/.vim/pack/plugins/start/vim-buf \
     && git clone https://github.com/hashivim/vim-terraform.git /home/${user}/.vim/pack/plugins/start/vim-terraform \
-    && git clone https://github.com/towolf/vim-helm /home/${user}/.vim/pack/plugins/start/vim-helm \
-    && go get github.com/GoogleCloudPlatform/cloudsql-proxy/cmd/cloud_sql_proxy \
+    && git clone https://github.com/towolf/vim-helm /home/${user}/.vim/pack/plugins/start/vim-helm \    
     && go get github.com/alecthomas/gometalinter  \
     && go get github.com/davidrjenni/reftools/cmd/fillstruct \
     && go get github.com/davidrjenni/reftools/cmd/fillswitch \
