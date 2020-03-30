@@ -168,7 +168,7 @@ RUN ln -s /lib /lib64 \
     && go get golang.org/x/tools/cmd/goimports \
     && go get golang.org/x/tools/gopls \
     && go get golang.org/x/tools/cmd/guru \
-    && go get honnef.co/go/tools/cmd/keyify \    
+    && go get honnef.co/go/tools/cmd/keyify \
     && git clone https://github.com/robbyrussell/oh-my-zsh /home/${user}/.oh-my-zsh \
     && chown -R ${user}:${group} /home/${user}
 
