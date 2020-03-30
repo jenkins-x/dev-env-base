@@ -63,7 +63,7 @@ RUN apk --no-cache --update add \
        py-pip \
        py-setuptools \
        python \
-       python-dev \       
+       python-dev \
        shadow \
        sudo \
        tar \
@@ -80,8 +80,6 @@ RUN apk --no-cache --update add \
     && apk add --no-cache --virtual .build-deps \
        gcc \
        musl-dev \
-    # Install GitHub CLI app
-    && apk add --allow-untrusted https://github.com/cli/cli/releases/download/v${GH_CLI_VERSION}/gh_${GH_CLI_VERSION}_linux_386.rpm \
     # Setup dirs for groovy
     && mkdir -p /opt /etc/hub \
     # Install hub-cli
@@ -100,7 +98,7 @@ RUN apk --no-cache --update add \
     # GitHub CLI
     && curl -f -L https://github.com/cli/cli/releases/download/v${GH_CLI_VERSION}/gh_${GH_CLI_VERSION}_linux_386.tar.gz| tar xzv \
     && mv gh_${GH_CLI_VERSION}_linux_386/bin/gh /usr/local/bin/ \
-    && rm -rf gh_${GH_CLI_VERSION}_linux_386 \
+    && rm -rf gh_${GH_CLI_VERSION}_linux_386
 
 COPY --from=kubectl /usr/local/bin/kubectl /usr/local/bin/kubectl
 COPY --from=helm /usr/local/bin/helm /usr/local/bin/helm
