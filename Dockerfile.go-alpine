@@ -94,7 +94,7 @@ RUN apk --no-cache --update add \
     && mv skaffold /usr/local/bin \
     && curl -LO https://storage.googleapis.com/container-structure-test/v${CONTAINER_STRUCTURE_TEST_VERSION}/container-structure-test-linux-amd64 \
     && chmod +x container-structure-test-linux-amd64 \
-    && mv container-structure-test-linux-amd64 /usr/local/bin/container-structure-test \
+    && mv container-structure-test-linux-amd64 /usr/local/bin/container-structure-test
     # GitHub CLI
 
 COPY --from=kubectl /usr/local/bin/kubectl /usr/local/bin/kubectl
