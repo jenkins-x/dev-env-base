@@ -18,6 +18,7 @@ ENV DEP_VERSION 0.5.1
 ENV VELERO_VERSION 1.1.0
 ENV SKAFFOLD_VERSION 1.0.1
 ENV CONTAINER_STRUCTURE_TEST_VERSION 1.8.0
+ENV GOPLS_VERSION v0.2
 ENV GOPATH ${home}/go-workspace
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 ENV GROOVY_HOME /opt/groovy
@@ -166,7 +167,7 @@ RUN ln -s /lib /lib64 \
     && go get github.com/zmb3/gogetdoc  \
     && go get golang.org/x/lint/golint  \
     && go get golang.org/x/tools/cmd/goimports \
-    && go get golang.org/x/tools/gopls \
+    && GO111MODULE=on go get golang.org/x/tools/gopls@${GOPLS_VERSION} \
     && go get golang.org/x/tools/cmd/guru \
     && go get honnef.co/go/tools/cmd/keyify \
     && git clone https://github.com/robbyrussell/oh-my-zsh /home/${user}/.oh-my-zsh \
