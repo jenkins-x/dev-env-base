@@ -22,6 +22,7 @@ ENV GOPLS_VERSION v0.2
 ENV GOPATH ${home}/go-workspace
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 ENV GROOVY_HOME /opt/groovy
+ENV GH_CLI_VERSION 0.6.2
 WORKDIR /
 
 # Install standard dependencies
@@ -93,7 +94,11 @@ RUN apk --no-cache --update add \
     && mv skaffold /usr/local/bin \
     && curl -LO https://storage.googleapis.com/container-structure-test/v${CONTAINER_STRUCTURE_TEST_VERSION}/container-structure-test-linux-amd64 \
     && chmod +x container-structure-test-linux-amd64 \
-    && mv container-structure-test-linux-amd64 /usr/local/bin/container-structure-test
+    && mv container-structure-test-linux-amd64 /usr/local/bin/container-structure-test \
+    # GitHub CLI
+    && curl -f -L https://github.com/cli/cli/releases/download/v${GH_CLI_VERSION}/gh_${GH_CLI_VERSION}_linux_386.tar.gz| tar xzv \
+    && mv gh_${GH_CLI_VERSION}_linux_386/bin/gh /usr/local/bin/ \
+    && rm -rf gh_${GH_CLI_VERSION}_linux_386
 
 COPY --from=kubectl /usr/local/bin/kubectl /usr/local/bin/kubectl
 COPY --from=helm /usr/local/bin/helm /usr/local/bin/helm
