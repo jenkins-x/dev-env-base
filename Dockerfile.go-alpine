@@ -22,7 +22,7 @@ ENV GOPLS_VERSION v0.2
 ENV GOPATH ${home}/go-workspace
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 ENV GROOVY_HOME /opt/groovy
-ENV GH_CLI_VERSION 0.6.2
+ENV GH_CLI_VERSION 0.6.3
 WORKDIR /
 
 # Install standard dependencies
